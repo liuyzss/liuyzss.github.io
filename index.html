@@ -245,6 +245,248 @@
             
               
                 
+                <a class="post-title-link" href="/2020/03/16/java-base-java-monitor/" itemprop="url">
+                  Java 中的 Monitor 机制
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2020-03-16T15:34:25+08:00" content="2020-03-16">
+              2020-03-16
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/java/" itemprop="url" rel="index">
+                    <span itemprop="name">java</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          monitor的概念管程，英文是 Monitor，也常被翻译为“监视器”，monitor 不管是翻译为“管程”还是“监视器”，都是比较晦涩的，通过翻译后的中文，并无法对 monitor 达到一个直观的描述。在《操作系统同步原语》 这篇文章中，介绍了操作系统在面对 进程/线程 间同步的时候，所支持的一些同步原语，其中 semaphore 信号量 和 mutex 互斥量是最重要的同步原语。在使用基本的 mutex 进行并发控制时，需要程序员非常小心地控制 mutex 的 down 和 up 操作，否则很容易引起死锁等问题。为了更容易地编写出正确的并发程序，所以在 mutex 和 semaphore 的基础上，提出了更高层次的同步原语 monitor，不过需要注意的是，操作系统本身并不支持 monitor 机制，实际上，monitor 是属于编程语言的范畴，当你想要使用 monitor 时，先了解一下语言本身是否支持 monitor 原语，例如 C 语言它就不支持 monitor，Java 语言支持 monitor。一般的 monitor 实现模式是编程语言在语法上提供语法糖，而如何实现 m
+          ...
+
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2020/03/16/java-base-java-monitor/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2020/03/16/java-base-java-synchronized/" itemprop="url">
+                  java 偏向锁、轻量级锁及重量级锁synchronized原理 
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2020-03-16T09:55:34+08:00" content="2020-03-16">
+              2020-03-16
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/java/" itemprop="url" rel="index">
+                    <span itemprop="name">java</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          synchronized的实现原理与应用在多线程并发编程中synchronized一直是元老级角色，很多人都会称呼它为重量级锁。Java SE 1.6中为了减少获得锁和释放锁带来的性能消耗而引入的偏向锁和轻量级 锁，以及锁的存储结构和升级过程。先来看下利用synchronized实现同步的基础:Java中的每一个对象都可以作为锁。具体表现 为以下3种形式。
+
+对于普通同步方法，锁是当前实例对象。
+对于静态同步方法，锁是当前类的Class对象。
+对于同步方法块，锁是Synchonized括号里配置的对象。从JVM规范中可以看到Synchonized在JVM里的实现原理，JVM基于进入和退出Monitor对 象来实现方法同步和代码块同步，但两者的实现细节不一样。代码块同步是使用monitorenter 和monitorexit指令实现的，而方法同步是使用另外一种方式实现的，细节在JVM规范里并没有 详细说明。但是，方法的同步同样可以使用这两个指令来实现。
+
+Java对象头synchronized用的锁是存在Java对象头里的。如果对象是数组类型，则虚拟机用3个字宽 (Word)存储对象头，
+          ...
+
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2020/03/16/java-base-java-synchronized/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2020/03/13/java-jvm-java7-8-jvm-diff/" itemprop="url">
                   java7&8 jvm 内存变化 
                 </a>
@@ -308,7 +550,10 @@
       
         
           
-          &#x89C4;&#x8303;&#x548C;&#x5B9E;&#x73B0;&#x9488;&#x5BF9;Java&#x865A;&#x62DF;&#x673A;&#x7684;&#x5B9E;&#x73B0;&#x6709;&#x4E13;&#x95E8;&#x7684;&#x300A;Java&#x865A;&#x62DF;&#x673A;&#x89C4;&#x8303;&#x300B;&#xFF0C;&#x5728;&#x9075;&#x5B88;&#x89C4;&#x8303;&#x7684;&#x524D;&#x63D0;&#x4E0B;&#xFF0C;&#x4E0D;&#x540C;&#x7684;&#x5382;&#x5546;&#x4F1A;&#x5BF9;&#x865A;&#x62DF;&#x673A;&#x8FDB;&#x884C;&#x4E0D;&#x540C;&#x7684;&#x5B9E;&#x73B0;&#x3002; &#x5C31;&#x597D;&#x6BD4;&#x5F00;&#x53D1;&#x7684;&#x8FC7;&#x7A0B;&#x
+          规范和实现针对Java虚拟机的实现有专门的《Java虚拟机规范》，在遵守规范的前提下，不同的厂商会对虚拟机进行不同的实现。 就好比开发的过程中定义了接口，具体的接口实现大家可以根据不同的业务需求进行实现。我们通常使用的Java SE都是由Sun JDK和OpenJDK所提供，这也是应用最广泛的版本。而该版本使用的VM就是HotSpot VM。通常情况下，我们所讲的java虚拟机指的就是HotSpot的版本
+java7 内存结构
+Java7及以前版本的Hotspot中方法区位于永久代中。同时，永久代和堆是相互隔离的，但它们使用的物理内存是连续的。永久代的垃圾收集是和老年代捆绑在一起的，因此无论谁满了，都会触发永久代和老年代的垃圾收集。
+但在Java7中永久代中存储的部分数据已经开始转移到Java Heap或Native Memory中了。比如，符号引用(Symbols)转移到了Native Memory；字符串常量池(interned strings)转移到了Java Heap；类的静态变量(class statics)转移到了Java Heap。然后，在Java8中，时代变了，Hots
           ...
 
           <div class="post-more-link text-center">
@@ -426,9 +671,12 @@
       
         
           
-          &#x7EBF;&#x7A0B;&#x72B6;&#x6001;
-NEW &#x521D;&#x59CB;&#x5316;&#x72B6;&#x6001;&#xFF0C;&#x7EBF;&#x7A0B;&#x88AB;&#x6784;&#x5EFA;&#xFF0C;&#x4F46;&#x662F;&#x8FD8;&#x6CA1;&#x6709;&#x88AB;&#x8C03;&#x7528;start()&#x65B9;&#x6CD5;
-RUNNABLE &#x72B6;&#x6001;&#x662F;&#x7EBF;&#x7A0B;&#x6B63;&#x5728;&#x6B63;&#x5E38;&#x8FD0;&#x884C;&#x4E2D;, &#x5F53;&#x7136;&#x53EF;&#x80FD;&#x4F1A;&#x6709;&#x67D0;&#x79CD;&#x8017;&#x65F6;&#x8BA1;&#x7B97;/IO&#x7B49;&#x5F85;&#x7684;&#x64CD;&#x4F5C;/CPU&#x65F6;&#x95F4;&#x7247;&#x52
+          线程状态
+NEW 初始化状态，线程被构建，但是还没有被调用start()方法
+RUNNABLE 状态是线程正在正常运行中, 当然可能会有某种耗时计算/IO等待的操作/CPU时间片切换等, 这个状态下发生的等待一般是其他系统资源, 而不是锁, Sleep等
+BLOCKED  这个状态下, 是在多个线程有同步操作的场景, 比如正在等待另一个线程的synchronized 块的执行释放, 或者可重入的 synchronized块里别人调用wait() 方法, 也就是这里是线程在等待进入临界区
+WAITING  这个状态下是指线程拥有了某个锁之后, 调用了他的wait方法, 等待其他线程/锁拥有者调用 notify / notifyAll 一遍该线程可以继续下一步操作,这里要区分 BLOCKED 和 WATING 的区别, 一个是在临界点外面等待进入, 一个是在理解点里面wait等待别人notify, 线程调用了join方法 join了另外的线程的时候, 也会进入WAITING状态, 等待被他join的线程执行结束
+TIMED_WAITING  这个状态就是有限的(时间限制)的WAITING,
           ...
 
           <div class="post-more-link text-center">
@@ -546,7 +794,7 @@ RUNNABLE &#x72B6;&#x6001;&#x662F;&#x7EBF;&#x7A0B;&#x6B63;&#x5728;&#x6B63;&#x5E38
       
         
           
-          vim&#x9009;&#x62E9;&#x4E0D;&#x5339;&#x914D;&#x7684;&#x884C;&#x5E76;&#x4E14;&#x5220;&#x9664;123456789v/pattern/dg!/pattern/dpattern &#x662F;&#x8981;&#x5339;&#x914D;&#x7684;&#x6B63;&#x89C4;d &#x4EE3;&#x8868;&#x5220;&#x9664;v&#x9009;&#x9879;&#x5BF9;&#x5E94;&#x7684;&#x82F1;&#x6587;&#x5E94;&#x8BE5;&#x662F; invert &#x53CD;&#x8F6C;&#x7684;&#x610F;&#x601D;g&#x4EE3;&#x8868;&#x5168;&#x90E8; global!&#x662F;&#x53D6;&#x53CD;g!&#x4E5F;&#x662F;&#x53D6;&#x53CD;&#x4E4B;&#x610F;
+          vim选择不匹配的行并且删除123456789v/pattern/dg!/pattern/dpattern 是要匹配的正规d 代表删除v选项对应的英文应该是 invert 反转的意思g代表全部 global!是取反g!也是取反之意
 
           
 
@@ -665,7 +913,7 @@ RUNNABLE &#x72B6;&#x6001;&#x662F;&#x7EBF;&#x7A0B;&#x6B63;&#x5728;&#x6B63;&#x5E38
       
         
           
-          jvm &#x53C2;&#x6570;123456-Xms20M -Xmx20M -XX:+HeapDumpOnOutOfMemoryError#-Xmx JVM&#x6700;&#x5927;&#x53EF;&#x7528;&#x5185;&#x5B58;&#x4E3A;#-Xms &#x6700;&#x5C0F;&#x5806;&#x7684;&#x5927;&#x5C0F;#-XX:+HeapDumpOnOutOfMemoryError jvm &#x5185;&#x5B58;&#x6EA2;&#x51FA;&#x662F;&#x751F;&#x6210;&#x5FEB;&#x7167;hprof#-XX:HeapDumpPath &#x6307;&#x5B9A;&#x5FEB;&#x7167;&#x7684;&#x76EE;&#x5F55;#-Xss128k&#x8BBE;&#x7F6E;&#x6BCF;&#x4E2A;&#x7EBF;&#x7A0B;&#x7684;&#x5806;&#x6808;&#x5927;&#x5C0F;
+          jvm 参数123456-Xms20M -Xmx20M -XX:+HeapDumpOnOutOfMemoryError#-Xmx JVM最大可用内存为#-Xms 最小堆的大小#-XX:+HeapDumpOnOutOfMemoryError jvm 内存溢出是生成快照hprof#-XX:HeapDumpPath 指定快照的目录#-Xss128k设置每个线程的堆栈大小
 
           
 
@@ -784,9 +1032,10 @@ RUNNABLE &#x72B6;&#x6001;&#x662F;&#x7EBF;&#x7A0B;&#x6B63;&#x5728;&#x6B63;&#x5E38
       
         
           
-          &#x5E38;&#x7528;&#x547D;&#x4EE4;xargs1234567# xargs&#x4E0E;find&#x7ECF;&#x5E38;&#x7ED3;&#x5408;&#x6765;&#x8FDB;&#x884C;&#x6587;&#x4EF6;&#x64CD;&#x4F5C;find . -type f -name &quot;*.log&quot; | xargs rm -rf *# xargs  -i &#x53C2;&#x6570;&#x6216;&#x8005;-I&#x53C2;&#x6570;&#x914D;&#x5408;{}&#x5373;&#x53EF;&#x8FDB;&#x884C;&#x6587;&#x4EF6;&#x7684;&#x64CD;&#x4F5C;find . -type f -name &quot;*.txt&quot; | xargs -I {} cp {}  /tmp/n/
-&#x6839;&#x636E;&#x884C;&#x53F7;&#x622A;&#x53D6;&#x67D0;&#x4E00;&#x6BB5;&#
-          ...
+          常用命令xargs1234567# xargs与find经常结合来进行文件操作find . -type f -name &quot;*.log&quot; | xargs rm -rf *# xargs  -i 参数或者-I参数配合&#123;&#125;即可进行文件的操作find . -type f -name &quot;*.txt&quot; | xargs -I &#123;&#125; cp &#123;&#125;  /tmp/n/
+根据行号截取某一段日志1234grep -n &quot;reg&quot; file# 找到你要找的日志的行号cat file | tail -n +line_no | head -n 100# 查看line_no行 后的100行
+
+          
 
           <div class="post-more-link text-center">
             <a class="btn" href="/2016/12/15/wiki-shell/#more" rel="contents">
@@ -915,8 +1164,9 @@ RUNNABLE &#x72B6;&#x6001;&#x662F;&#x7EBF;&#x7A0B;&#x6B63;&#x5728;&#x6B63;&#x5E38
       
         
           
-          mysql &#x5E38;&#x7528;&#x547D;&#x4EE4;12345678910111213show processlist;show full processlist;show status like &apos;%lock%&apos;&#x67E5;&#x770B;&#x6B63;&#x5728;&#x9501;&#x7684;&#x4E8B;&#x52A1;SELECT * FROM INFORMATION_SCHEMA.INNODB_LOCKS; &#x67E5;&#x770B;&#x7B49;&#x5F85;&#x9501;&#x7684;&#x4E8B;&#x52A1;SELECT * FROM INFORMATION_SCHEMA.INNODB_LOCK_WAITS;#InnoDB Standard Monitor and Lock Monitor OutputSHOW ENGINE INNODB STATUS;
-&#x67E5;&#x770B;&#x5F53;&#x524D;&#x8FDE;&#x63A5;&#x6570;1234show proce
+          mysql 常用命令12345678910111213show processlist;show full processlist;show status like &apos;%lock%&apos;查看正在锁的事务SELECT * FROM INFORMATION_SCHEMA.INNODB_LOCKS; 查看等待锁的事务SELECT * FROM INFORMATION_SCHEMA.INNODB_LOCK_WAITS;#InnoDB Standard Monitor and Lock Monitor OutputSHOW ENGINE INNODB STATUS;
+查看当前连接数1234show processlist;show full processlist如果是root帐号，你能看到所有用户的当前连接。如果是其它普通帐号，只能看到自己占用的连接。 show processlist;只列出前100条，如果想全列出请使用show full processlist;
+查看服务状态12345678910111213141516171819202122232425262728293
           ...
 
           <div class="post-more-link text-center">
@@ -1046,7 +1296,7 @@ RUNNABLE &#x72B6;&#x6001;&#x662F;&#x7EBF;&#x7A0B;&#x6B63;&#x5728;&#x6B63;&#x5E38
       
         
           
-          &#x5E38;&#x89C1;&#x95EE;&#x9898;git push fatal: unable to create thread: Resource temporarily unavailable1234# &#x7CFB;&#x7EDF;&#x5185;&#x5B58;&#x4E0D;&#x8DB3;&#x5BFC;&#x81F4;git config --global pack.windowMemory &quot;100m&quot;git config --global pack.SizeLimit &quot;100m&quot;# git config --global pack.threads &quot;1&quot; (&#x4E0D;&#x9700;&#x8981;&#x6267;&#x884C;&#xFF1F;)
+          常见问题git push fatal: unable to create thread: Resource temporarily unavailable1234# 系统内存不足导致git config --global pack.windowMemory &quot;100m&quot;git config --global pack.SizeLimit &quot;100m&quot;# git config --global pack.threads &quot;1&quot; (不需要执行？)
 
           
 
@@ -1165,277 +1415,24 @@ RUNNABLE &#x72B6;&#x6001;&#x662F;&#x7EBF;&#x7A0B;&#x6B63;&#x5728;&#x6B63;&#x5E38
       
         
           
-          &#x6D6E;&#x70B9;&#x6570;&#x5224;&#x65AD;&#x5927;&#x5C0F;&#x6709;&#x95EE;&#x9898;&#xFF0C;&#x56E0;&#x4E3A;&#x5E95;&#x5C42;&#x7684;&#x4E8C;&#x8FDB;&#x5236;&#x6570;&#x4E0D;&#x80FD;&#x7CBE;&#x786E;&#x8868;&#x793A;&#x6240;&#x6709;&#x7684;&#x5C0F;&#x6570;&#x3002;&#x6709;&#x65F6;&#x5019;&#x4F1A;&#x4EA7;&#x751F;&#x8BA9;&#x4EBA;&#x89C9;&#x5F97;&#x83AB;&#x540D;&#x5176;&#x5999;&#x7684;&#x4E8B;&#x60C5;&#x3002;
-&#x5982;&#x5728;java&#x4E2D;&#xFF0C;
+          浮点数判断大小有问题，因为底层的二进制数不能精确表示所有的小数。有时候会产生让人觉得莫名其妙的事情。
+如在java中，
 0.99999999f==1f //true
 0.9f==1f //false
-&#x8981;&#x660E;&#x767
+要明白这些，首先要搞清楚float和double在内存结构
+内存结构float和double的范围是由指数的位数来决定的。
+float的指数位有8位，而double的指数位有11位，分布如下：
+float：
+1bit（符号位） 8bits（指数位） 23bits（尾数位）
+double：
+1bit（符号位） 11bits（指数位） 52bits（尾数位）
+于是，float的指数范围为-128~+127，而double的指数范围为-1024~+1023，并且指数位是按补码的形式来划分的。
+其中负指数决定了浮点数所能表达的绝对值最小的非零数；而正指数决定了浮点数所能表达的绝对值最大的数，也即决定了浮点数的取值范围。
+float的范围为-2^128 ~ +2^127，也即-3.40E+38 ~ +3.40E+38；double的范围为-2^1024 ~ +2^1023，也即-1.79E+308 
           ...
 
           <div class="post-more-link text-center">
             <a class="btn" href="/2016/12/06/java-base-float-round/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/12/06/java-utils-interest-calculation/" itemprop="url">
-                  等额本息、等额本金利息计算工具
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-12-06T17:13:38+08:00" content="2016-12-06">
-              2016-12-06
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/java/" itemprop="url" rel="index">
-                    <span itemprop="name">java</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/java/util/" itemprop="url" rel="index">
-                    <span itemprop="name">util</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          &#x5229;&#x606F;&#x8BA1;&#x7B97;&#x516C;&#x5F0F;&#x7B49;&#x989D;&#x672C;&#x606F;&#x6CD5;&#xFF1A;&#x6BCF;&#x671F;&#x5E94;&#x8FD8;&#x6B3E;&#x989D;&#xFF1D;&#x3010;&#x501F;&#x6B3E;&#x672C;&#x91D1;&#xD7;&#x6708;&#x5229;&#x7387;&#xD7;&#xFF08;1&#xFF0B;&#x6708;&#x5229;&#x7387;&#xFF09;^&#x8FD8;&#x6B3E;&#x671F;&#x6570;&#x3011;/&#x3010;&#xFF08;1&#xFF0B;&#x6708;&#x5229;&#x7387;&#xFF09;^&#x8FD8;&#x6B3E;&#x671F;&#x6570;&#xFF0D;1&#x3011; 
-&#x7B49;&#x989D;&#x672C;&#x91D1;&#x6CD5;&#xFF1A;&#x6BCF;&#x671F;&#x5E94;
-          ...
-
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/12/06/java-utils-interest-calculation/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/12/06/wiki-hexo-wiki/" itemprop="url">
-                  hexo wiki
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-12-06T11:49:52+08:00" content="2016-12-06">
-              2016-12-06
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/wiki/" itemprop="url" rel="index">
-                    <span itemprop="name">wiki</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/wiki/hexo/" itemprop="url" rel="index">
-                    <span itemprop="name">hexo</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          &#x5E38;&#x7528;&#x547D;&#x4EE4;&#x542F;&#x52A8;hexo&#x670D;&#x52A1;123hexo s -w# -w/--watch &#x52A8;&#x6001;&#x90E8;&#x7F72;&#xFF0C;&#x6587;&#x4EF6;&#x6539;&#x53D8;&#x5B9E;&#x65F6;&#x66F4;&#x65B0;# s/start &#x542F;&#x52A8;
-&#x53D1;&#x5E03;&#x65B0;&#x6587;&#x7AE0;1234hexo new post &apos;title&apos; --path path/filename# post &#x6307;&#x5B9A;&#x6A21;&#x677F;# title &#x6587;&#x7AE0;&#x6807;&#x9898;# --path &#x6307;&#x5B9A;&#x6587;&#x7AE0;&#x76EE;&#x5F55;&#x548C;&#x6587;&#x4EF6;&#x540D;; path/filen
-          ...
-
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/12/06/wiki-hexo-wiki/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1510,7 +1507,7 @@ RUNNABLE &#x72B6;&#x6001;&#x662F;&#x7EBF;&#x7A0B;&#x6B63;&#x5728;&#x6B63;&#x5E38
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">16</span>
+              <span class="site-state-item-count">18</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1527,7 +1524,7 @@ RUNNABLE &#x72B6;&#x6001;&#x662F;&#x7EBF;&#x7A0B;&#x6B63;&#x5728;&#x6B63;&#x5E38
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">17</span>
+                <span class="site-state-item-count">19</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

@@ -84,20 +84,26 @@
 
 
 
-<meta name="description" content="&amp;#x7EBF;&amp;#x7A0B;&amp;#x72B6;&amp;#x6001;
-NEW &amp;#x521D;&amp;#x59CB;&amp;#x5316;&amp;#x72B6;&amp;#x6001;&amp;#xFF0C;&amp;#x7EBF;&amp;#x7A0B;&amp;#x88AB;&amp;#x6784;&amp;#x5EFA;&amp;#xFF0C;&amp;#x4F46;&amp;#x662F;&amp;#x8FD8;&amp;#x6CA1;&amp;#x6709;&amp;#x88AB;&amp;#x8C03;&amp;#x7528;sta">
+<meta name="description" content="线程状态
+NEW 初始化状态，线程被构建，但是还没有被调用start()方法
+RUNNABLE 状态是线程正在正常运行中, 当然可能会有某种耗时计算/IO等待的操作/CPU时间片切换等, 这个状态下发生的等待一般是其他系统资源, 而不是锁, Sleep等
+BLOCKED  这个状态下, 是在多个线程有同步操作的场景, 比如正在等待另一个线程的synchronized 块的执行释放, 或者可重入的">
 <meta property="og:type" content="article">
 <meta property="og:title" content="java 线程">
 <meta property="og:url" content="http://yoursite.com/2018/01/17/java-base-java-thread/index.html">
 <meta property="og:site_name" content="蓝色骑士">
-<meta property="og:description" content="&amp;#x7EBF;&amp;#x7A0B;&amp;#x72B6;&amp;#x6001;
-NEW &amp;#x521D;&amp;#x59CB;&amp;#x5316;&amp;#x72B6;&amp;#x6001;&amp;#xFF0C;&amp;#x7EBF;&amp;#x7A0B;&amp;#x88AB;&amp;#x6784;&amp;#x5EFA;&amp;#xFF0C;&amp;#x4F46;&amp;#x662F;&amp;#x8FD8;&amp;#x6CA1;&amp;#x6709;&amp;#x88AB;&amp;#x8C03;&amp;#x7528;sta">
+<meta property="og:description" content="线程状态
+NEW 初始化状态，线程被构建，但是还没有被调用start()方法
+RUNNABLE 状态是线程正在正常运行中, 当然可能会有某种耗时计算/IO等待的操作/CPU时间片切换等, 这个状态下发生的等待一般是其他系统资源, 而不是锁, Sleep等
+BLOCKED  这个状态下, 是在多个线程有同步操作的场景, 比如正在等待另一个线程的synchronized 块的执行释放, 或者可重入的">
 <meta property="og:image" content="http://yoursite.com/2018/01/17/java-base-java-thread/thread_state.png">
 <meta property="og:updated_time" content="2018-01-17T04:01:38.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="java 线程">
-<meta name="twitter:description" content="&amp;#x7EBF;&amp;#x7A0B;&amp;#x72B6;&amp;#x6001;
-NEW &amp;#x521D;&amp;#x59CB;&amp;#x5316;&amp;#x72B6;&amp;#x6001;&amp;#xFF0C;&amp;#x7EBF;&amp;#x7A0B;&amp;#x88AB;&amp;#x6784;&amp;#x5EFA;&amp;#xFF0C;&amp;#x4F46;&amp;#x662F;&amp;#x8FD8;&amp;#x6CA1;&amp;#x6709;&amp;#x88AB;&amp;#x8C03;&amp;#x7528;sta">
+<meta name="twitter:description" content="线程状态
+NEW 初始化状态，线程被构建，但是还没有被调用start()方法
+RUNNABLE 状态是线程正在正常运行中, 当然可能会有某种耗时计算/IO等待的操作/CPU时间片切换等, 这个状态下发生的等待一般是其他系统资源, 而不是锁, Sleep等
+BLOCKED  这个状态下, 是在多个线程有同步操作的场景, 比如正在等待另一个线程的synchronized 块的执行释放, 或者可重入的">
 <meta name="twitter:image" content="http://yoursite.com/2018/01/17/java-base-java-thread/thread_state.png">
 
 
@@ -310,26 +316,26 @@ NEW &amp;#x521D;&amp;#x59CB;&amp;#x5316;&amp;#x72B6;&amp;#x6001;&amp;#xFF0C;&amp
       
 
       
-        <h3 id="&#x7EBF;&#x7A0B;&#x72B6;&#x6001;"><a href="#&#x7EBF;&#x7A0B;&#x72B6;&#x6001;" class="headerlink" title="&#x7EBF;&#x7A0B;&#x72B6;&#x6001;"></a>&#x7EBF;&#x7A0B;&#x72B6;&#x6001;</h3><ul>
-<li>NEW &#x521D;&#x59CB;&#x5316;&#x72B6;&#x6001;&#xFF0C;&#x7EBF;&#x7A0B;&#x88AB;&#x6784;&#x5EFA;&#xFF0C;&#x4F46;&#x662F;&#x8FD8;&#x6CA1;&#x6709;&#x88AB;&#x8C03;&#x7528;start()&#x65B9;&#x6CD5;</li>
-<li>RUNNABLE &#x72B6;&#x6001;&#x662F;&#x7EBF;&#x7A0B;&#x6B63;&#x5728;&#x6B63;&#x5E38;&#x8FD0;&#x884C;&#x4E2D;, &#x5F53;&#x7136;&#x53EF;&#x80FD;&#x4F1A;&#x6709;&#x67D0;&#x79CD;&#x8017;&#x65F6;&#x8BA1;&#x7B97;/IO&#x7B49;&#x5F85;&#x7684;&#x64CD;&#x4F5C;/CPU&#x65F6;&#x95F4;&#x7247;&#x5207;&#x6362;&#x7B49;, &#x8FD9;&#x4E2A;&#x72B6;&#x6001;&#x4E0B;&#x53D1;&#x751F;&#x7684;&#x7B49;&#x5F85;&#x4E00;&#x822C;&#x662F;&#x5176;&#x4ED6;&#x7CFB;&#x7EDF;&#x8D44;&#x6E90;, &#x800C;&#x4E0D;&#x662F;&#x9501;, Sleep&#x7B49;</li>
-<li>BLOCKED  &#x8FD9;&#x4E2A;&#x72B6;&#x6001;&#x4E0B;, &#x662F;&#x5728;&#x591A;&#x4E2A;&#x7EBF;&#x7A0B;&#x6709;&#x540C;&#x6B65;&#x64CD;&#x4F5C;&#x7684;&#x573A;&#x666F;, &#x6BD4;&#x5982;&#x6B63;&#x5728;&#x7B49;&#x5F85;&#x53E6;&#x4E00;&#x4E2A;&#x7EBF;&#x7A0B;&#x7684;synchronized &#x5757;&#x7684;&#x6267;&#x884C;&#x91CA;&#x653E;, &#x6216;&#x8005;&#x53EF;&#x91CD;&#x5165;&#x7684; synchronized&#x5757;&#x91CC;&#x522B;&#x4EBA;&#x8C03;&#x7528;wait() &#x65B9;&#x6CD5;, &#x4E5F;&#x5C31;&#x662F;&#x8FD9;&#x91CC;&#x662F;&#x7EBF;&#x7A0B;&#x5728;&#x7B49;&#x5F85;&#x8FDB;&#x5165;&#x4E34;&#x754C;&#x533A;</li>
-<li>WAITING  &#x8FD9;&#x4E2A;&#x72B6;&#x6001;&#x4E0B;&#x662F;&#x6307;&#x7EBF;&#x7A0B;&#x62E5;&#x6709;&#x4E86;&#x67D0;&#x4E2A;&#x9501;&#x4E4B;&#x540E;, &#x8C03;&#x7528;&#x4E86;&#x4ED6;&#x7684;wait&#x65B9;&#x6CD5;, &#x7B49;&#x5F85;&#x5176;&#x4ED6;&#x7EBF;&#x7A0B;/&#x9501;&#x62E5;&#x6709;&#x8005;&#x8C03;&#x7528; notify / notifyAll &#x4E00;&#x904D;&#x8BE5;&#x7EBF;&#x7A0B;&#x53EF;&#x4EE5;&#x7EE7;&#x7EED;&#x4E0B;&#x4E00;&#x6B65;&#x64CD;&#x4F5C;,<br>&#x8FD9;&#x91CC;&#x8981;&#x533A;&#x5206; BLOCKED &#x548C; WATING &#x7684;&#x533A;&#x522B;, &#x4E00;&#x4E2A;&#x662F;&#x5728;&#x4E34;&#x754C;&#x70B9;&#x5916;&#x9762;&#x7B49;&#x5F85;&#x8FDB;&#x5165;, &#x4E00;&#x4E2A;&#x662F;&#x5728;&#x7406;&#x89E3;&#x70B9;&#x91CC;&#x9762;wait&#x7B49;&#x5F85;&#x522B;&#x4EBA;notify, &#x7EBF;&#x7A0B;&#x8C03;&#x7528;&#x4E86;join&#x65B9;&#x6CD5; join&#x4E86;&#x53E6;&#x5916;&#x7684;&#x7EBF;&#x7A0B;&#x7684;&#x65F6;&#x5019;, &#x4E5F;&#x4F1A;&#x8FDB;&#x5165;WAITING&#x72B6;&#x6001;, &#x7B49;&#x5F85;&#x88AB;&#x4ED6;join&#x7684;&#x7EBF;&#x7A0B;&#x6267;&#x884C;&#x7ED3;&#x675F;</li>
-<li>TIMED_WAITING  &#x8FD9;&#x4E2A;&#x72B6;&#x6001;&#x5C31;&#x662F;&#x6709;&#x9650;&#x7684;(&#x65F6;&#x95F4;&#x9650;&#x5236;)&#x7684;WAITING, &#x4E00;&#x822C;&#x51FA;&#x73B0;&#x5728;&#x8C03;&#x7528;wait(long), join(long)&#x7B49;&#x60C5;&#x51B5;&#x4E0B;, &#x53E6;&#x5916;&#x4E00;&#x4E2A;&#x7EBF;&#x7A0B;sleep&#x540E;, &#x4E5F;&#x4F1A;&#x8FDB;&#x5165;TIMED_WAITING&#x72B6;&#x6001;</li>
-<li>TERMINATED &#x8FD9;&#x4E2A;&#x72B6;&#x6001;&#x4E0B;&#x8868;&#x793A; &#x8BE5;&#x7EBF;&#x7A0B;&#x7684;run&#x65B9;&#x6CD5;&#x5DF2;&#x7ECF;&#x6267;&#x884C;&#x5B8C;&#x6BD5;&#x4E86;, &#x57FA;&#x672C;&#x4E0A;&#x5C31;&#x7B49;&#x4E8E;&#x6B7B;&#x4EA1;&#x4E86;(&#x5F53;&#x65F6;&#x5982;&#x679C;&#x7EBF;&#x7A0B;&#x88AB;&#x6301;&#x4E45;&#x6301;&#x6709;, &#x53EF;&#x80FD;&#x4E0D;&#x4F1A;&#x88AB;&#x56DE;&#x6536;)</li>
+        <h3 id="线程状态"><a href="#线程状态" class="headerlink" title="线程状态"></a>线程状态</h3><ul>
+<li>NEW 初始化状态，线程被构建，但是还没有被调用start()方法</li>
+<li>RUNNABLE 状态是线程正在正常运行中, 当然可能会有某种耗时计算/IO等待的操作/CPU时间片切换等, 这个状态下发生的等待一般是其他系统资源, 而不是锁, Sleep等</li>
+<li>BLOCKED  这个状态下, 是在多个线程有同步操作的场景, 比如正在等待另一个线程的synchronized 块的执行释放, 或者可重入的 synchronized块里别人调用wait() 方法, 也就是这里是线程在等待进入临界区</li>
+<li>WAITING  这个状态下是指线程拥有了某个锁之后, 调用了他的wait方法, 等待其他线程/锁拥有者调用 notify / notifyAll 一遍该线程可以继续下一步操作,<br>这里要区分 BLOCKED 和 WATING 的区别, 一个是在临界点外面等待进入, 一个是在理解点里面wait等待别人notify, 线程调用了join方法 join了另外的线程的时候, 也会进入WAITING状态, 等待被他join的线程执行结束</li>
+<li>TIMED_WAITING  这个状态就是有限的(时间限制)的WAITING, 一般出现在调用wait(long), join(long)等情况下, 另外一个线程sleep后, 也会进入TIMED_WAITING状态</li>
+<li>TERMINATED 这个状态下表示 该线程的run方法已经执行完毕了, 基本上就等于死亡了(当时如果线程被持久持有, 可能不会被回收)</li>
 </ul>
-<h3 id="&#x72B6;&#x6001;&#x6D41;&#x8F6C;&#x5982;&#x4E0B;&#xFF1A;"><a href="#&#x72B6;&#x6001;&#x6D41;&#x8F6C;&#x5982;&#x4E0B;&#xFF1A;" class="headerlink" title="&#x72B6;&#x6001;&#x6D41;&#x8F6C;&#x5982;&#x4E0B;&#xFF1A;"></a>&#x72B6;&#x6001;&#x6D41;&#x8F6C;&#x5982;&#x4E0B;&#xFF1A;</h3><p><img src="/2018/01/17/java-base-java-thread/thread_state.png" alt="https"></p>
+<h3 id="状态流转如下："><a href="#状态流转如下：" class="headerlink" title="状态流转如下："></a>状态流转如下：</h3><p><img src="/2018/01/17/java-base-java-thread/thread_state.png" alt="https"></p>
 <ul>
-<li>&#x7EBF;&#x7A0B;&#x8FDB;&#x5165; WAITING/TIMED_WAITING &#x4F1A;&#x91CA;&#x653E;&#x540C;&#x6B65;&#x9501;&#xFF0C;&#x8FDB;&#x5165;&#x7B49;&#x5F85;&#x961F;&#x5217;&#xFF1B;&#x5524;&#x9192;&#x540E;&#x9700;&#x8981;&#x91CD;&#x65B0;&#x7ADE;&#x4E89;&#x8D44;&#x6E90;,&#x5931;&#x8D25;&#x8FDB;&#x5165; BLOCKED &#x72B6;&#x6001;</li>
-<li>BLOCKED &#x72B6;&#x6001;&#x8DDF; I/O &#x7684;&#x963B;&#x585E;&#x662F;&#x4E0D;&#x540C;&#x7684;&#xFF0C;&#x5B83;&#x4E0D;&#x662F;&#x4E00;&#x822C;&#x610F;&#x4E49;&#x4E0A;&#x7684;&#x963B;&#x585E;&#xFF0C;&#x800C;&#x662F;&#x7279;&#x6307;&#x88AB; synchronized &#x5757;&#x963B;&#x585E;&#xFF0C;&#x5373;&#x662F;&#x8DDF;&#x7EBF;&#x7A0B;&#x540C;&#x6B65;&#x6709;&#x5173;&#x7684;&#x4E00;&#x4E2A;&#x72B6;&#x6001;&#x3002;IO&#x963B;&#x585E;&#x7EBF;&#x7A0B;&#x4E0D;&#x4F1A;&#x91CA;&#x653E;&#x540C;&#x6B65;&#x9501;&#x3002;</li>
+<li>线程进入 WAITING/TIMED_WAITING 会释放同步锁，进入等待队列；唤醒后需要重新竞争资源,失败进入 BLOCKED 状态</li>
+<li>BLOCKED 状态跟 I/O 的阻塞是不同的，它不是一般意义上的阻塞，而是特指被 synchronized 块阻塞，即是跟线程同步有关的一个状态。IO阻塞线程不会释放同步锁。</li>
 </ul>
-<h3 id="thread-interrupt"><a href="#thread-interrupt" class="headerlink" title="thread interrupt"></a>thread interrupt</h3><p>interrupt()&#x65B9;&#x6CD5;&#x7684;&#x5DE5;&#x4F5C;&#x4EC5;&#x4EC5;&#x662F;&#x6539;&#x53D8;&#x4E2D;&#x65AD;&#x72B6;&#x6001;&#xFF0C;&#x5E76;&#x4E0D;&#x662F;&#x76F4;&#x63A5;&#x4E2D;&#x65AD;&#x6B63;&#x5728;&#x8FD0;&#x884C;&#x7684;&#x7EBF;&#x7A0B;&#x3002;&#x4E2D;&#x65AD;&#x7684;&#x771F;&#x6B63;&#x539F;&#x7406;&#x662F;&#x5F53;&#x7EBF;&#x7A0B;&#x88AB;Object.wait(),Thread.join()&#x6216;sleep()&#x65B9;&#x6CD5;&#x963B;&#x585E;&#x65F6;&#xFF0C;<br>&#x8C03;&#x7528;interrupt()&#x65B9;&#x6CD5;&#x540E;&#x6539;&#x53D8;&#x4E2D;&#x65AD;&#x72B6;&#x6001;&#xFF0C;&#x800C;wait/join/sleep&#x8FD9;&#x4E9B;&#x65B9;&#x6CD5;&#x5185;&#x90E8;&#x4F1A;&#x4E0D;&#x65AD;&#x5730;&#x68C0;&#x67E5;&#x7EBF;&#x7A0B;&#x7684;&#x4E2D;&#x65AD;&#x72B6;&#x6001;&#x503C;&#xFF0C;&#x5F53;&#x53D1;&#x73B0;&#x4E2D;&#x65AD;&#x72B6;&#x6001;&#x503C;&#x6539;&#x53D8;&#x65F6;&#x5219;&#x629B;&#x51FA;InterruptedException&#x5F02;&#x5E38;&#xFF1B;<br>&#x5BF9;&#x4E8E;&#x6CA1;&#x6709;&#x963B;&#x585E;&#x7684;&#x7EBF;&#x7A0B;&#xFF0C;&#x8C03;&#x7528;interrupt()&#x65B9;&#x6CD5;&#x662F;&#x6CA1;&#x6709;&#x4EFB;&#x4F55;&#x4F5C;&#x7528;&#x3002;</p>
-<h4 id="interrupt-&#x3001;interrupted-&#x3001;isInterrupted-&#x7684;&#x533A;&#x522B;"><a href="#interrupt-&#x3001;interrupted-&#x3001;isInterrupted-&#x7684;&#x533A;&#x522B;" class="headerlink" title="interrupt()&#x3001;interrupted()&#x3001;isInterrupted() &#x7684;&#x533A;&#x522B;"></a>interrupt()&#x3001;interrupted()&#x3001;isInterrupted() &#x7684;&#x533A;&#x522B;</h4><ul>
-<li>interrupted()&#x5C5E;&#x4E8E;&#x7C7B;&#x65B9;&#x6CD5;&#xFF0C;&#x800C;interrupt()&#x548C;isInterrupted()&#x5C5E;&#x4E8E;&#x5BF9;&#x8C61;&#x65B9;&#x6CD5;&#x3002;</li>
-<li>interrupted()&#xFF1A;&#x8FD4;&#x56DE;&#x5F53;&#x524D;&#x7EBF;&#x7A0B;&#x7684;&#x4E2D;&#x65AD;&#x6807;&#x5FD7;&#x4F4D;&#xFF0C;&#x5E76;&#x8BBE;&#x7F6E;&#x4E2D;&#x65AD;&#x6807;&#x5FD7;&#x4F4D;false&#xFF1B;<br>interrupt()&#xFF1A;&#x8BBE;&#x7F6E;&#x7EBF;&#x7A0B;&#x5BF9;&#x8C61;&#x7684;&#x4E2D;&#x65AD;&#x6807;&#x5FD7;&#x4F4D;&#x4E3A;true&#xFF1B;<br>isInterrupted()&#xFF1A;&#x8FD4;&#x56DE;&#x7EBF;&#x7A0B;&#x5BF9;&#x8C61;&#x7684;&#x4E2D;&#x65AD;&#x6807;&#x5FD7;&#x4F4D;</li>
-<li>&#x5F53;&#x7EBF;&#x7A0B;&#x6EE1;&#x8DB3;&#x4E24;&#x4E2A;&#x6761;&#x4EF6;&#xFF0C;&#x963B;&#x585E;&#x72B6;&#x6001;&#x548C;&#x4E2D;&#x65AD;&#x6807;&#x5FD7;&#x4E3A;ture&#xFF0C;&#x5219;&#x4F1A;&#x629B;&#x51FA;InterruptedException&#x5F02;&#x5E38;&#xFF0C;&#x5E76;&#x4E14;&#x4F1A;&#x81EA;&#x52A8;&#x5C06;&#x4E2D;&#x65AD;&#x6807;&#x5FD7;&#x4F4D;&#x8BBE;&#x7F6E;&#x4E3A;false;<br>&#x963B;&#x585E;&#x65B9;&#x6CD5;&#xFF0C;&#x4E00;&#x822C;&#x6709;&#xFF0C;Thread.sleep(&#x2026;)&#xFF0C;Object.wait(&#x2026;)&#xFF0C;join(&#x2026;)&#xFF0C;&#x4E2D;&#x65AD;&#x4E0D;&#x4F1A;&#x505C;&#x6B62;&#x7EBF;&#x7A0B;;&#x975E;&#x963B;&#x585E;&#x72B6;&#x6001;&#x4E0B;&#xFF0C;&#x53EA;&#x662F;&#x8BBE;&#x7F6E;&#x4E2D;&#x65AD;&#x6807;&#x8BC6;</li>
+<h3 id="thread-interrupt"><a href="#thread-interrupt" class="headerlink" title="thread interrupt"></a>thread interrupt</h3><p>interrupt()方法的工作仅仅是改变中断状态，并不是直接中断正在运行的线程。中断的真正原理是当线程被Object.wait(),Thread.join()或sleep()方法阻塞时，<br>调用interrupt()方法后改变中断状态，而wait/join/sleep这些方法内部会不断地检查线程的中断状态值，当发现中断状态值改变时则抛出InterruptedException异常；<br>对于没有阻塞的线程，调用interrupt()方法是没有任何作用。</p>
+<h4 id="interrupt-、interrupted-、isInterrupted-的区别"><a href="#interrupt-、interrupted-、isInterrupted-的区别" class="headerlink" title="interrupt()、interrupted()、isInterrupted() 的区别"></a>interrupt()、interrupted()、isInterrupted() 的区别</h4><ul>
+<li>interrupted()属于类方法，而interrupt()和isInterrupted()属于对象方法。</li>
+<li>interrupted()：返回当前线程的中断标志位，并设置中断标志位false；<br>interrupt()：设置线程对象的中断标志位为true；<br>isInterrupted()：返回线程对象的中断标志位</li>
+<li>当线程满足两个条件，阻塞状态和中断标志为ture，则会抛出InterruptedException异常，并且会自动将中断标志位设置为false;<br>阻塞方法，一般有，Thread.sleep(…)，Object.wait(…)，join(…)，中断不会停止线程;非阻塞状态下，只是设置中断标识</li>
 </ul>
-<h3 id="&#x53C2;&#x8003;&#x8D44;&#x6599;"><a href="#&#x53C2;&#x8003;&#x8D44;&#x6599;" class="headerlink" title="&#x53C2;&#x8003;&#x8D44;&#x6599;"></a>&#x53C2;&#x8003;&#x8D44;&#x6599;</h3><h4 id="wait-join-demo"><a href="#wait-join-demo" class="headerlink" title="wait join demo"></a>wait join demo</h4><ul>
+<h3 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h3><h4 id="wait-join-demo"><a href="#wait-join-demo" class="headerlink" title="wait join demo"></a>wait join demo</h4><ul>
 <li><a href="https://github.com/liuyzss/java-demo/tree/master/src/main/java/com/bk/base/thread" target="_blank" rel="external">thread-java-wait-demo</a></li>
 </ul>
 
@@ -441,7 +447,7 @@ NEW &amp;#x521D;&amp;#x59CB;&amp;#x5316;&amp;#x72B6;&amp;#x6001;&amp;#xFF0C;&amp
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">16</span>
+              <span class="site-state-item-count">18</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -458,7 +464,7 @@ NEW &amp;#x521D;&amp;#x59CB;&amp;#x5316;&amp;#x72B6;&amp;#x6001;&amp;#xFF0C;&amp
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">17</span>
+                <span class="site-state-item-count">19</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

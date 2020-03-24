@@ -84,16 +84,16 @@
 
 
 
-<meta name="description" content="jvm &amp;#x53C2;&amp;#x6570;123456-Xms20M -Xmx20M -XX:+HeapDumpOnOutOfMemoryError#-Xmx JVM&amp;#x6700;&amp;#x5927;&amp;#x53EF;&amp;#x7528;&amp;#x5185;&amp;#x5B58;&amp;#x4E3A;#-Xms &amp;#x6700;&amp;#x5C0F;&amp;#x5806;&amp;#x7684;&amp;#x5927;&amp;#x5C0F;#-XX:+He">
+<meta name="description" content="jvm 参数123456-Xms20M -Xmx20M -XX:+HeapDumpOnOutOfMemoryError#-Xmx JVM最大可用内存为#-Xms 最小堆的大小#-XX:+HeapDumpOnOutOfMemoryError jvm 内存溢出是生成快照hprof#-XX:HeapDumpPath 指定快照的目录#-Xss128k设置每个线程的堆栈大小">
 <meta property="og:type" content="article">
 <meta property="og:title" content="jvm options">
 <meta property="og:url" content="http://yoursite.com/2017/09/12/java-jvm-jvm-options/index.html">
 <meta property="og:site_name" content="蓝色骑士">
-<meta property="og:description" content="jvm &amp;#x53C2;&amp;#x6570;123456-Xms20M -Xmx20M -XX:+HeapDumpOnOutOfMemoryError#-Xmx JVM&amp;#x6700;&amp;#x5927;&amp;#x53EF;&amp;#x7528;&amp;#x5185;&amp;#x5B58;&amp;#x4E3A;#-Xms &amp;#x6700;&amp;#x5C0F;&amp;#x5806;&amp;#x7684;&amp;#x5927;&amp;#x5C0F;#-XX:+He">
+<meta property="og:description" content="jvm 参数123456-Xms20M -Xmx20M -XX:+HeapDumpOnOutOfMemoryError#-Xmx JVM最大可用内存为#-Xms 最小堆的大小#-XX:+HeapDumpOnOutOfMemoryError jvm 内存溢出是生成快照hprof#-XX:HeapDumpPath 指定快照的目录#-Xss128k设置每个线程的堆栈大小">
 <meta property="og:updated_time" content="2017-09-12T01:06:17.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="jvm options">
-<meta name="twitter:description" content="jvm &amp;#x53C2;&amp;#x6570;123456-Xms20M -Xmx20M -XX:+HeapDumpOnOutOfMemoryError#-Xmx JVM&amp;#x6700;&amp;#x5927;&amp;#x53EF;&amp;#x7528;&amp;#x5185;&amp;#x5B58;&amp;#x4E3A;#-Xms &amp;#x6700;&amp;#x5C0F;&amp;#x5806;&amp;#x7684;&amp;#x5927;&amp;#x5C0F;#-XX:+He">
+<meta name="twitter:description" content="jvm 参数123456-Xms20M -Xmx20M -XX:+HeapDumpOnOutOfMemoryError#-Xmx JVM最大可用内存为#-Xms 最小堆的大小#-XX:+HeapDumpOnOutOfMemoryError jvm 内存溢出是生成快照hprof#-XX:HeapDumpPath 指定快照的目录#-Xss128k设置每个线程的堆栈大小">
 
 
 
@@ -305,7 +305,7 @@
       
 
       
-        <h3 id="jvm-&#x53C2;&#x6570;"><a href="#jvm-&#x53C2;&#x6570;" class="headerlink" title="jvm &#x53C2;&#x6570;"></a>jvm &#x53C2;&#x6570;</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">-Xms20M -Xmx20M -XX:+HeapDumpOnOutOfMemoryError</div><div class="line">#-Xmx JVM&#x6700;&#x5927;&#x53EF;&#x7528;&#x5185;&#x5B58;&#x4E3A;</div><div class="line">#-Xms &#x6700;&#x5C0F;&#x5806;&#x7684;&#x5927;&#x5C0F;</div><div class="line">#-XX:+HeapDumpOnOutOfMemoryError jvm &#x5185;&#x5B58;&#x6EA2;&#x51FA;&#x662F;&#x751F;&#x6210;&#x5FEB;&#x7167;hprof</div><div class="line">#-XX:HeapDumpPath &#x6307;&#x5B9A;&#x5FEB;&#x7167;&#x7684;&#x76EE;&#x5F55;</div><div class="line">#-Xss128k&#x8BBE;&#x7F6E;&#x6BCF;&#x4E2A;&#x7EBF;&#x7A0B;&#x7684;&#x5806;&#x6808;&#x5927;&#x5C0F;</div></pre></td></tr></table></figure>
+        <h3 id="jvm-参数"><a href="#jvm-参数" class="headerlink" title="jvm 参数"></a>jvm 参数</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">-Xms20M -Xmx20M -XX:+HeapDumpOnOutOfMemoryError</div><div class="line">#-Xmx JVM最大可用内存为</div><div class="line">#-Xms 最小堆的大小</div><div class="line">#-XX:+HeapDumpOnOutOfMemoryError jvm 内存溢出是生成快照hprof</div><div class="line">#-XX:HeapDumpPath 指定快照的目录</div><div class="line">#-Xss128k设置每个线程的堆栈大小</div></pre></td></tr></table></figure>
 
       
     </div>
@@ -415,7 +415,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">16</span>
+              <span class="site-state-item-count">18</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -432,7 +432,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">17</span>
+                <span class="site-state-item-count">19</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

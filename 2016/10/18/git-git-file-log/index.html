@@ -84,18 +84,30 @@
 
 
 
-<meta name="description" content="&amp;#x6709;&amp;#x65F6;&amp;#x5019;&amp;#x5728;&amp;#x6BD4;&amp;#x5BF9;&amp;#x4EE3;&amp;#x7801;&amp;#x65F6;&amp;#xFF0C;&amp;#x770B;&amp;#x5230;&amp;#x67D0;&amp;#x4E9B;&amp;#x6539;&amp;#x52A8;&amp;#xFF0C;&amp;#x4F46;&amp;#x4E0D;&amp;#x6E05;&amp;#x695A;&amp;#x8FD9;&amp;#x4E2A;&amp;#x6539;&amp;#x52A8">
+<meta name="description" content="有时候在比对代码时，看到某些改动，但不清楚这个改动的作者和原因，也不知道对应的BUG号，也就是说无从查到这些改动的具体原因了～
+
+cd pwd1cd path
+git log –pretty然后使用下面的命令可列出文件的所有改动历史，注意，这里着眼于具体的一个文件，而不是git库，如果是库，那改动可多了去了～
+12git log --pretty=oneline filename# git lo">
 <meta property="og:type" content="article">
 <meta property="og:title" content="git查看文件修改记录">
 <meta property="og:url" content="http://yoursite.com/2016/10/18/git-git-file-log/index.html">
 <meta property="og:site_name" content="蓝色骑士">
-<meta property="og:description" content="&amp;#x6709;&amp;#x65F6;&amp;#x5019;&amp;#x5728;&amp;#x6BD4;&amp;#x5BF9;&amp;#x4EE3;&amp;#x7801;&amp;#x65F6;&amp;#xFF0C;&amp;#x770B;&amp;#x5230;&amp;#x67D0;&amp;#x4E9B;&amp;#x6539;&amp;#x52A8;&amp;#xFF0C;&amp;#x4F46;&amp;#x4E0D;&amp;#x6E05;&amp;#x695A;&amp;#x8FD9;&amp;#x4E2A;&amp;#x6539;&amp;#x52A8">
+<meta property="og:description" content="有时候在比对代码时，看到某些改动，但不清楚这个改动的作者和原因，也不知道对应的BUG号，也就是说无从查到这些改动的具体原因了～
+
+cd pwd1cd path
+git log –pretty然后使用下面的命令可列出文件的所有改动历史，注意，这里着眼于具体的一个文件，而不是git库，如果是库，那改动可多了去了～
+12git log --pretty=oneline filename# git lo">
 <meta property="og:image" content="http://yoursite.com/2016/10/18/git-git-file-log/pic01.png">
 <meta property="og:image" content="http://yoursite.com/2016/10/18/git-git-file-log/pic02.png">
 <meta property="og:updated_time" content="2016-10-18T08:01:44.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="git查看文件修改记录">
-<meta name="twitter:description" content="&amp;#x6709;&amp;#x65F6;&amp;#x5019;&amp;#x5728;&amp;#x6BD4;&amp;#x5BF9;&amp;#x4EE3;&amp;#x7801;&amp;#x65F6;&amp;#xFF0C;&amp;#x770B;&amp;#x5230;&amp;#x67D0;&amp;#x4E9B;&amp;#x6539;&amp;#x52A8;&amp;#xFF0C;&amp;#x4F46;&amp;#x4E0D;&amp;#x6E05;&amp;#x695A;&amp;#x8FD9;&amp;#x4E2A;&amp;#x6539;&amp;#x52A8">
+<meta name="twitter:description" content="有时候在比对代码时，看到某些改动，但不清楚这个改动的作者和原因，也不知道对应的BUG号，也就是说无从查到这些改动的具体原因了～
+
+cd pwd1cd path
+git log –pretty然后使用下面的命令可列出文件的所有改动历史，注意，这里着眼于具体的一个文件，而不是git库，如果是库，那改动可多了去了～
+12git log --pretty=oneline filename# git lo">
 <meta name="twitter:image" content="http://yoursite.com/2016/10/18/git-git-file-log/pic01.png">
 
 
@@ -309,16 +321,16 @@
 
       
         <blockquote>
-<p>&#x6709;&#x65F6;&#x5019;&#x5728;&#x6BD4;&#x5BF9;&#x4EE3;&#x7801;&#x65F6;&#xFF0C;&#x770B;&#x5230;&#x67D0;&#x4E9B;&#x6539;&#x52A8;&#xFF0C;&#x4F46;&#x4E0D;&#x6E05;&#x695A;&#x8FD9;&#x4E2A;&#x6539;&#x52A8;&#x7684;&#x4F5C;&#x8005;&#x548C;&#x539F;&#x56E0;&#xFF0C;&#x4E5F;&#x4E0D;&#x77E5;&#x9053;&#x5BF9;&#x5E94;&#x7684;BUG&#x53F7;&#xFF0C;&#x4E5F;&#x5C31;&#x662F;&#x8BF4;&#x65E0;&#x4ECE;&#x67E5;&#x5230;&#x8FD9;&#x4E9B;&#x6539;&#x52A8;&#x7684;&#x5177;&#x4F53;&#x539F;&#x56E0;&#x4E86;&#xFF5E;</p>
+<p>有时候在比对代码时，看到某些改动，但不清楚这个改动的作者和原因，也不知道对应的BUG号，也就是说无从查到这些改动的具体原因了～</p>
 </blockquote>
 <h3 id="cd-pwd"><a href="#cd-pwd" class="headerlink" title="cd pwd"></a>cd pwd</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cd path</div></pre></td></tr></table></figure>
-<h3 id="git-log-&#x2013;pretty"><a href="#git-log-&#x2013;pretty" class="headerlink" title="git log &#x2013;pretty"></a>git log &#x2013;pretty</h3><p>&#x7136;&#x540E;&#x4F7F;&#x7528;&#x4E0B;&#x9762;&#x7684;&#x547D;&#x4EE4;&#x53EF;&#x5217;&#x51FA;&#x6587;&#x4EF6;&#x7684;&#x6240;&#x6709;&#x6539;&#x52A8;&#x5386;&#x53F2;&#xFF0C;&#x6CE8;&#x610F;&#xFF0C;&#x8FD9;&#x91CC;&#x7740;&#x773C;&#x4E8E;&#x5177;&#x4F53;&#x7684;&#x4E00;&#x4E2A;&#x6587;&#x4EF6;&#xFF0C;&#x800C;&#x4E0D;&#x662F;git&#x5E93;&#xFF0C;&#x5982;&#x679C;&#x662F;&#x5E93;&#xFF0C;&#x90A3;&#x6539;&#x52A8;&#x53EF;&#x591A;&#x4E86;&#x53BB;&#x4E86;&#xFF5E;</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">git log --pretty=oneline filename</div><div class="line"># git log -p [filename] //&#x67E5;&#x770B;&#x8BE6;&#x7EC6;&#x4FEE;&#x6539;&#x5185;&#x5BB9;</div></pre></td></tr></table></figure>
-<p>&#x5982;&#xFF1A;<br><img src="/2016/10/18/git-git-file-log/pic01.png" alt="git-log"></p>
-<h3 id="git-show"><a href="#git-show" class="headerlink" title="git show"></a>git show</h3><p>&#x5982;&#x4E0A;&#x6240;&#x793A;&#xFF0C;&#x6253;&#x5370;&#x51FA;&#x6765;&#x7684;&#x5C31;&#x662F;&#x9488;&#x5BF9;&#x6587;&#x4EF6;&#x7684;&#x6240;&#x6709;&#x7684;&#x6539;&#x52A8;&#x5386;&#x53F2;&#xFF0C;&#x6BCF;&#x4E00;&#x884C;&#x6700;&#x524D;&#x9762;&#x7684;&#x90A3;&#x4E00;&#x957F;&#x4E32;&#x6570;&#x5B57;&#x5C31;&#x662F;&#x6BCF;&#x6B21;&#x63D0;&#x4EA4;&#x5F62;&#x6210;&#x7684;&#x54C8;&#x5E0C;&#x503C;&#xFF0C;&#x63A5;&#x4E0B;&#x6765;&#x4F7F;&#x7528;git show&#x5373;&#x53EF;&#x663E;&#x793A;&#x5177;&#x4F53;&#x7684;&#x67D0;&#x6B21;&#x7684;&#x6539;&#x52A8;&#x7684;&#x4FEE;&#x6539;&#xFF5E;</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">git show 8076b7e13513df335864b21adc043479ab5f9ebd filename</div><div class="line"># git show [commit_id] [file] //&#x67E5;&#x770B;&#x67D0;&#x6B21;&#x63D0;&#x4EA4;&#x7684;&#x4FEE;&#x6539;&#x5185;&#x5BB9;</div></pre></td></tr></table></figure>
-<p>&#x5982;&#xFF1A;<br><img src="/2016/10/18/git-git-file-log/pic02.png" alt="git-log"></p>
-<p>&#x8FD9;&#x6837;&#x7684;&#x8BDD;&#xFF0C;&#x5F88;&#x9AD8;&#x6548;&#x3001;&#x5FEB;&#x901F;&#x7684;&#x67E5;&#x770B;&#x6307;&#x5B9A;&#x6587;&#x4EF6;&#x7684;&#x63D0;&#x4EA4;&#x8BB0;&#x5F55;&#x548C;&#x8BB0;&#x5F55;&#x8BE6;&#x60C5;&#x3002;</p>
+<h3 id="git-log-–pretty"><a href="#git-log-–pretty" class="headerlink" title="git log –pretty"></a>git log –pretty</h3><p>然后使用下面的命令可列出文件的所有改动历史，注意，这里着眼于具体的一个文件，而不是git库，如果是库，那改动可多了去了～</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">git log --pretty=oneline filename</div><div class="line"># git log -p [filename] //查看详细修改内容</div></pre></td></tr></table></figure>
+<p>如：<br><img src="/2016/10/18/git-git-file-log/pic01.png" alt="git-log"></p>
+<h3 id="git-show"><a href="#git-show" class="headerlink" title="git show"></a>git show</h3><p>如上所示，打印出来的就是针对文件的所有的改动历史，每一行最前面的那一长串数字就是每次提交形成的哈希值，接下来使用git show即可显示具体的某次的改动的修改～</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">git show 8076b7e13513df335864b21adc043479ab5f9ebd filename</div><div class="line"># git show [commit_id] [file] //查看某次提交的修改内容</div></pre></td></tr></table></figure>
+<p>如：<br><img src="/2016/10/18/git-git-file-log/pic02.png" alt="git-log"></p>
+<p>这样的话，很高效、快速的查看指定文件的提交记录和记录详情。</p>
 
       
     </div>
@@ -428,7 +440,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">16</span>
+              <span class="site-state-item-count">18</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -445,7 +457,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">17</span>
+                <span class="site-state-item-count">19</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

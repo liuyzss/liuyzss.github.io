@@ -84,12 +84,12 @@
 
 
 
-<meta name="description" content="&amp;#x89C4;&amp;#x8303;&amp;#x548C;&amp;#x5B9E;&amp;#x73B0;&amp;#x9488;&amp;#x5BF9;Java&amp;#x865A;&amp;#x62DF;&amp;#x673A;&amp;#x7684;&amp;#x5B9E;&amp;#x73B0;&amp;#x6709;&amp;#x4E13;&amp;#x95E8;&amp;#x7684;&amp;#x300A;Java&amp;#x865A;&amp;#x62DF;&amp;#x673A;&amp;#x89C4;&amp;#x8303;&amp;#x300B;">
+<meta name="description" content="规范和实现针对Java虚拟机的实现有专门的《Java虚拟机规范》，在遵守规范的前提下，不同的厂商会对虚拟机进行不同的实现。 就好比开发的过程中定义了接口，具体的接口实现大家可以根据不同的业务需求进行实现。我们通常使用的Java SE都是由Sun JDK和OpenJDK所提供，这也是应用最广泛的版本。而该版本使用的VM就是HotSpot VM。通常情况下，我们所讲的java虚拟机指的就是HotSpo">
 <meta property="og:type" content="article">
 <meta property="og:title" content="java7&8 jvm 内存变化 ">
 <meta property="og:url" content="http://yoursite.com/2020/03/13/java-jvm-java7-8-jvm-diff/index.html">
 <meta property="og:site_name" content="蓝色骑士">
-<meta property="og:description" content="&amp;#x89C4;&amp;#x8303;&amp;#x548C;&amp;#x5B9E;&amp;#x73B0;&amp;#x9488;&amp;#x5BF9;Java&amp;#x865A;&amp;#x62DF;&amp;#x673A;&amp;#x7684;&amp;#x5B9E;&amp;#x73B0;&amp;#x6709;&amp;#x4E13;&amp;#x95E8;&amp;#x7684;&amp;#x300A;Java&amp;#x865A;&amp;#x62DF;&amp;#x673A;&amp;#x89C4;&amp;#x8303;&amp;#x300B;">
+<meta property="og:description" content="规范和实现针对Java虚拟机的实现有专门的《Java虚拟机规范》，在遵守规范的前提下，不同的厂商会对虚拟机进行不同的实现。 就好比开发的过程中定义了接口，具体的接口实现大家可以根据不同的业务需求进行实现。我们通常使用的Java SE都是由Sun JDK和OpenJDK所提供，这也是应用最广泛的版本。而该版本使用的VM就是HotSpot VM。通常情况下，我们所讲的java虚拟机指的就是HotSpo">
 <meta property="og:image" content="http://yoursite.com/2020/03/13/java-jvm-java7-8-jvm-diff/java7-mem.png">
 <meta property="og:image" content="http://yoursite.com/2020/03/13/java-jvm-java7-8-jvm-diff/heap-mem.png">
 <meta property="og:image" content="http://yoursite.com/2020/03/13/java-jvm-java7-8-jvm-diff/jvm7-xmind.jpg">
@@ -97,7 +97,7 @@
 <meta property="og:updated_time" content="2020-03-13T09:45:22.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="java7&8 jvm 内存变化 ">
-<meta name="twitter:description" content="&amp;#x89C4;&amp;#x8303;&amp;#x548C;&amp;#x5B9E;&amp;#x73B0;&amp;#x9488;&amp;#x5BF9;Java&amp;#x865A;&amp;#x62DF;&amp;#x673A;&amp;#x7684;&amp;#x5B9E;&amp;#x73B0;&amp;#x6709;&amp;#x4E13;&amp;#x95E8;&amp;#x7684;&amp;#x300A;Java&amp;#x865A;&amp;#x62DF;&amp;#x673A;&amp;#x89C4;&amp;#x8303;&amp;#x300B;">
+<meta name="twitter:description" content="规范和实现针对Java虚拟机的实现有专门的《Java虚拟机规范》，在遵守规范的前提下，不同的厂商会对虚拟机进行不同的实现。 就好比开发的过程中定义了接口，具体的接口实现大家可以根据不同的业务需求进行实现。我们通常使用的Java SE都是由Sun JDK和OpenJDK所提供，这也是应用最广泛的版本。而该版本使用的VM就是HotSpot VM。通常情况下，我们所讲的java虚拟机指的就是HotSpo">
 <meta name="twitter:image" content="http://yoursite.com/2020/03/13/java-jvm-java7-8-jvm-diff/java7-mem.png">
 
 
@@ -310,24 +310,24 @@
       
 
       
-        <h3 id="&#x89C4;&#x8303;&#x548C;&#x5B9E;&#x73B0;"><a href="#&#x89C4;&#x8303;&#x548C;&#x5B9E;&#x73B0;" class="headerlink" title="&#x89C4;&#x8303;&#x548C;&#x5B9E;&#x73B0;"></a>&#x89C4;&#x8303;&#x548C;&#x5B9E;&#x73B0;</h3><p>&#x9488;&#x5BF9;Java&#x865A;&#x62DF;&#x673A;&#x7684;&#x5B9E;&#x73B0;&#x6709;&#x4E13;&#x95E8;&#x7684;&#x300A;Java&#x865A;&#x62DF;&#x673A;&#x89C4;&#x8303;&#x300B;&#xFF0C;&#x5728;&#x9075;&#x5B88;&#x89C4;&#x8303;&#x7684;&#x524D;&#x63D0;&#x4E0B;&#xFF0C;&#x4E0D;&#x540C;&#x7684;&#x5382;&#x5546;&#x4F1A;&#x5BF9;&#x865A;&#x62DF;&#x673A;&#x8FDB;&#x884C;&#x4E0D;&#x540C;&#x7684;&#x5B9E;&#x73B0;&#x3002; &#x5C31;&#x597D;&#x6BD4;&#x5F00;&#x53D1;&#x7684;&#x8FC7;&#x7A0B;&#x4E2D;&#x5B9A;&#x4E49;&#x4E86;&#x63A5;&#x53E3;&#xFF0C;&#x5177;&#x4F53;&#x7684;&#x63A5;&#x53E3;&#x5B9E;&#x73B0;&#x5927;&#x5BB6;&#x53EF;&#x4EE5;&#x6839;&#x636E;&#x4E0D;&#x540C;&#x7684;&#x4E1A;&#x52A1;&#x9700;&#x6C42;&#x8FDB;&#x884C;&#x5B9E;&#x73B0;&#x3002;<br>PS&#xFF1A;&#x5927;&#x5BB6;&#x90FD;&#x6709;&#x5FC5;&#x8981;&#x4E86;&#x89E3;&#x4E00;&#x4E0B;&#x300A;Java&#x865A;&#x62DF;&#x673A;&#x89C4;&#x8303;&#xD7;&#xD7;&#xD7;&#x201D;&#xFF0C;&#x56DE;&#x590D;&#x201C;002&#x201D;&#x83B7;&#x5F97;Java SE 7&#x7684;&#x865A;&#x62DF;&#x673A;&#x89C4;&#x8303;PDF&#x7248;&#x3002;<br>&#x6211;&#x4EEC;&#x901A;&#x5E38;&#x4F7F;&#x7528;&#x7684;Java SE&#x90FD;&#x662F;&#x7531;Sun JDK&#x548C;OpenJDK&#x6240;&#x63D0;&#x4F9B;&#xFF0C;&#x8FD9;&#x4E5F;&#x662F;&#x5E94;&#x7528;&#x6700;&#x5E7F;&#x6CDB;&#x7684;&#x7248;&#x672C;&#x3002;&#x800C;&#x8BE5;&#x7248;&#x672C;&#x4F7F;&#x7528;&#x7684;VM&#x5C31;&#x662F;HotSpot VM&#x3002;&#x901A;&#x5E38;&#x60C5;&#x51B5;&#x4E0B;&#xFF0C;&#x6211;&#x4EEC;&#x6240;&#x8BB2;&#x7684;java&#x865A;&#x62DF;&#x673A;&#x6307;&#x7684;&#x5C31;&#x662F;HotSpot&#x7684;&#x7248;&#x672C;</p>
-<h3 id="java7-&#x5185;&#x5B58;&#x7ED3;&#x6784;"><a href="#java7-&#x5185;&#x5B58;&#x7ED3;&#x6784;" class="headerlink" title="java7 &#x5185;&#x5B58;&#x7ED3;&#x6784;"></a>java7 &#x5185;&#x5B58;&#x7ED3;&#x6784;</h3><p><img src="/2020/03/13/java-jvm-java7-8-jvm-diff/java7-mem.png" alt="https"></p>
-<p>Java7&#x53CA;&#x4EE5;&#x524D;&#x7248;&#x672C;&#x7684;Hotspot&#x4E2D;&#x65B9;&#x6CD5;&#x533A;&#x4F4D;&#x4E8E;&#x6C38;&#x4E45;&#x4EE3;&#x4E2D;&#x3002;&#x540C;&#x65F6;&#xFF0C;&#x6C38;&#x4E45;&#x4EE3;&#x548C;&#x5806;&#x662F;&#x76F8;&#x4E92;&#x9694;&#x79BB;&#x7684;&#xFF0C;&#x4F46;&#x5B83;&#x4EEC;&#x4F7F;&#x7528;&#x7684;&#x7269;&#x7406;&#x5185;&#x5B58;&#x662F;&#x8FDE;&#x7EED;&#x7684;&#x3002;<br>&#x6C38;&#x4E45;&#x4EE3;&#x7684;&#x5783;&#x573E;&#x6536;&#x96C6;&#x662F;&#x548C;&#x8001;&#x5E74;&#x4EE3;&#x6346;&#x7ED1;&#x5728;&#x4E00;&#x8D77;&#x7684;&#xFF0C;&#x56E0;&#x6B64;&#x65E0;&#x8BBA;&#x8C01;&#x6EE1;&#x4E86;&#xFF0C;&#x90FD;&#x4F1A;&#x89E6;&#x53D1;&#x6C38;&#x4E45;&#x4EE3;&#x548C;&#x8001;&#x5E74;&#x4EE3;&#x7684;&#x5783;&#x573E;&#x6536;&#x96C6;&#x3002;<br><img src="/2020/03/13/java-jvm-java7-8-jvm-diff/heap-mem.png" alt="https"></p>
-<p>&#x4F46;&#x5728;Java7&#x4E2D;&#x6C38;&#x4E45;&#x4EE3;&#x4E2D;&#x5B58;&#x50A8;&#x7684;&#x90E8;&#x5206;&#x6570;&#x636E;&#x5DF2;&#x7ECF;&#x5F00;&#x59CB;&#x8F6C;&#x79FB;&#x5230;Java Heap&#x6216;Native Memory&#x4E2D;&#x4E86;&#x3002;&#x6BD4;&#x5982;&#xFF0C;&#x7B26;&#x53F7;&#x5F15;&#x7528;(Symbols)&#x8F6C;&#x79FB;&#x5230;&#x4E86;Native Memory&#xFF1B;&#x5B57;&#x7B26;&#x4E32;&#x5E38;&#x91CF;&#x6C60;(interned strings)&#x8F6C;&#x79FB;&#x5230;&#x4E86;Java Heap&#xFF1B;&#x7C7B;&#x7684;&#x9759;&#x6001;&#x53D8;&#x91CF;(class statics)&#x8F6C;&#x79FB;&#x5230;&#x4E86;Java Heap&#x3002;<br>&#x7136;&#x540E;&#xFF0C;&#x5728;Java8&#x4E2D;&#xFF0C;&#x65F6;&#x4EE3;&#x53D8;&#x4E86;&#xFF0C;Hotspot&#x53D6;&#x6D88;&#x4E86;&#x6C38;&#x4E45;&#x4EE3;&#x3002;&#x6C38;&#x4E45;&#x4EE3;&#x771F;&#x7684;&#x6210;&#x4E86;&#x6C38;&#x4E45;&#x7684;&#x8BB0;&#x5FC6;&#x3002;&#x6C38;&#x4E45;&#x4EE3;&#x7684;&#x53C2;&#x6570;-XX:PermSize&#x548C;-XX&#xFF1A;MaxPermSize&#x4E5F;&#x968F;&#x4E4B;&#x5931;&#x6548;&#x3002;</p>
-<h3 id="&#x5185;&#x5B58;&#x4ECB;&#x7ECD;"><a href="#&#x5185;&#x5B58;&#x4ECB;&#x7ECD;" class="headerlink" title="&#x5185;&#x5B58;&#x4ECB;&#x7ECD;"></a>&#x5185;&#x5B58;&#x4ECB;&#x7ECD;</h3><p><img src="/2020/03/13/java-jvm-java7-8-jvm-diff/jvm7-xmind.jpg" alt="https"></p>
-<h3 id="java8-&#x5185;&#x5B58;&#x7ED3;&#x6784;"><a href="#java8-&#x5185;&#x5B58;&#x7ED3;&#x6784;" class="headerlink" title="java8 &#x5185;&#x5B58;&#x7ED3;&#x6784;"></a>java8 &#x5185;&#x5B58;&#x7ED3;&#x6784;</h3><p><img src="/2020/03/13/java-jvm-java7-8-jvm-diff/java8-mem.png" alt="https"></p>
-<p>&#x9488;&#x5BF9;Java8&#x7684;&#x8C03;&#x6574;&#xFF0C;&#x6211;&#x4EEC;&#x518D;&#x6B21;&#x5BF9;&#x5185;&#x5B58;&#x7ED3;&#x6784;&#x56FE;&#x8FDB;&#x884C;&#x8C03;&#x6574;&#x3002;<br>&#x5143;&#x7A7A;&#x95F4;&#x5B58;&#x5728;&#x4E8E;&#x672C;&#x5730;&#x5185;&#x5B58;&#xFF0C;&#x610F;&#x5473;&#x7740;&#x53EA;&#x8981;&#x672C;&#x5730;&#x5185;&#x5B58;&#x8DB3;&#x591F;&#xFF0C;&#x5B83;&#x4E0D;&#x4F1A;&#x51FA;&#x73B0;&#x50CF;&#x6C38;&#x4E45;&#x4EE3;&#x4E2D;&#x201C;java.lang.OutOfMemoryError: PermGen space&#x201D;&#x8FD9;&#x79CD;&#x9519;&#x8BEF;&#x3002;&#x770B;&#x4E0A;&#x56FE;&#x4E2D;&#x7684;&#x65B9;&#x6CD5;&#x533A;&#xFF0C;&#x662F;&#x4E0D;&#x662F;&#x201C;&#x81A8;&#x80C0;&#x201D;&#x4E86;&#x3002;<br>&#x9ED8;&#x8BA4;&#x60C5;&#x51B5;&#x4E0B;&#x5143;&#x7A7A;&#x95F4;&#x662F;&#x53EF;&#x4EE5;&#x65E0;&#x9650;&#x4F7F;&#x7528;&#x672C;&#x5730;&#x5185;&#x5B58;&#x7684;&#xFF0C;&#x4F46;&#x4E3A;&#x4E86;&#x4E0D;&#x8BA9;&#x5B83;&#x5982;&#x6B64;&#x81A8;&#x80C0;&#xFF0C;JVM&#x540C;&#x6837;&#x63D0;&#x4F9B;&#x4E86;&#x53C2;&#x6570;&#x6765;&#x9650;&#x5236;&#x5B83;&#x4F7F;&#x7528;&#x7684;&#x4F7F;&#x7528;&#x3002;</p>
+        <h3 id="规范和实现"><a href="#规范和实现" class="headerlink" title="规范和实现"></a>规范和实现</h3><p>针对Java虚拟机的实现有专门的《Java虚拟机规范》，在遵守规范的前提下，不同的厂商会对虚拟机进行不同的实现。 就好比开发的过程中定义了接口，具体的接口实现大家可以根据不同的业务需求进行实现。<br>我们通常使用的Java SE都是由Sun JDK和OpenJDK所提供，这也是应用最广泛的版本。而该版本使用的VM就是HotSpot VM。通常情况下，我们所讲的java虚拟机指的就是HotSpot的版本</p>
+<h3 id="java7-内存结构"><a href="#java7-内存结构" class="headerlink" title="java7 内存结构"></a>java7 内存结构</h3><p><img src="/2020/03/13/java-jvm-java7-8-jvm-diff/java7-mem.png" alt="https"></p>
+<p>Java7及以前版本的Hotspot中方法区位于永久代中。同时，永久代和堆是相互隔离的，但它们使用的物理内存是连续的。<br>永久代的垃圾收集是和老年代捆绑在一起的，因此无论谁满了，都会触发永久代和老年代的垃圾收集。<br><img src="/2020/03/13/java-jvm-java7-8-jvm-diff/heap-mem.png" alt="https"></p>
+<p>但在Java7中永久代中存储的部分数据已经开始转移到Java Heap或Native Memory中了。比如，符号引用(Symbols)转移到了Native Memory；字符串常量池(interned strings)转移到了Java Heap；类的静态变量(class statics)转移到了Java Heap。<br>然后，在Java8中，时代变了，Hotspot取消了永久代。永久代真的成了永久的记忆。永久代的参数-XX:PermSize和-XX：MaxPermSize也随之失效。</p>
+<h3 id="内存介绍"><a href="#内存介绍" class="headerlink" title="内存介绍"></a>内存介绍</h3><p><img src="/2020/03/13/java-jvm-java7-8-jvm-diff/jvm7-xmind.jpg" alt="https"></p>
+<h3 id="java8-内存结构"><a href="#java8-内存结构" class="headerlink" title="java8 内存结构"></a>java8 内存结构</h3><p><img src="/2020/03/13/java-jvm-java7-8-jvm-diff/java8-mem.png" alt="https"></p>
+<p>针对Java8的调整，我们再次对内存结构图进行调整。<br>元空间存在于本地内存，意味着只要本地内存足够，它不会出现像永久代中“java.lang.OutOfMemoryError: PermGen space”这种错误。看上图中的方法区，是不是“膨胀”了。<br>默认情况下元空间是可以无限使用本地内存的，但为了不让它如此膨胀，JVM同样提供了参数来限制它使用的使用。</p>
 <ul>
-<li>-XX:MetaspaceSize=N<br>&#x8FD9;&#x4E2A;&#x53C2;&#x6570;&#x662F;&#x521D;&#x59CB;&#x5316;&#x7684;Metaspace&#x5927;&#x5C0F;&#xFF0C;&#x8BE5;&#x503C;&#x8D8A;&#x5927;&#x89E6;&#x53D1;Metaspace GC&#x7684;&#x65F6;&#x673A;&#x5C31;&#x8D8A;&#x665A;&#x3002;&#x968F;&#x7740;GC&#x7684;&#x5230;&#x6765;&#xFF0C;&#x865A;&#x62DF;&#x673A;&#x4F1A;&#x6839;&#x636E;&#x5B9E;&#x9645;&#x60C5;&#x51B5;&#x8C03;&#x63A7;Metaspace&#x7684;&#x5927;&#x5C0F;&#xFF0C;&#x53EF;&#x80FD;&#x589E;&#x52A0;&#x4E0A;&#x7EBF;&#x4E5F;&#x53EF;&#x80FD;&#x964D;&#x4F4E;&#x3002;&#x5728;&#x9ED8;&#x8BA4;&#x60C5;&#x51B5;&#x4E0B;&#xFF0C;&#x8FD9;&#x4E2A;&#x503C;&#x5927;&#x5C0F;&#x6839;&#x636E;&#x4E0D;&#x540C;&#x7684;&#x5E73;&#x53F0;&#x5728;12M&#x5230;20M&#x6D6E;&#x52A8;&#x3002;&#x4F7F;&#x7528;java -XX:+PrintFlagsInitial&#x547D;&#x4EE4;&#x67E5;&#x770B;&#x672C;&#x673A;&#x7684;&#x521D;&#x59CB;&#x5316;&#x53C2;&#x6570;&#xFF0C;-XX:Metaspacesize&#x4E3A;21810376B&#xFF08;&#x5927;&#x7EA6;20.8M&#xFF09;&#x3002;</li>
-<li>-XX:MaxMetaspaceSize=N<br>&#x8FD9;&#x4E2A;&#x53C2;&#x6570;&#x7528;&#x4E8E;&#x9650;&#x5236;Metaspace&#x589E;&#x957F;&#x7684;&#x4E0A;&#x9650;&#xFF0C;&#x9632;&#x6B62;&#x56E0;&#x4E3A;&#x67D0;&#x4E9B;&#x60C5;&#x51B5;&#x5BFC;&#x81F4;Metaspace&#x65E0;&#x9650;&#x7684;&#x4F7F;&#x7528;&#x672C;&#x5730;&#x5185;&#x5B58;&#xFF0C;&#x5F71;&#x54CD;&#x5230;&#x5176;&#x4ED6;&#x7A0B;&#x5E8F;&#x3002;&#x5728;&#x672C;&#x673A;&#x4E0A;&#x8BE5;&#x53C2;&#x6570;&#x7684;&#x9ED8;&#x8BA4;&#x503C;&#x4E3A;4294967295B&#xFF08;&#x5927;&#x7EA6;4096MB&#xFF09;&#x3002;</li>
-<li>-XX:MinMetaspaceFreeRatio=N<br>&#x5F53;&#x8FDB;&#x884C;&#x8FC7;Metaspace GC&#x4E4B;&#x540E;&#xFF0C;&#x4F1A;&#x8BA1;&#x7B97;&#x5F53;&#x524D;Metaspace&#x7684;&#x7A7A;&#x95F2;&#x7A7A;&#x95F4;&#x6BD4;&#xFF0C;&#x5982;&#x679C;&#x7A7A;&#x95F2;&#x6BD4;&#x5C0F;&#x4E8E;&#x8FD9;&#x4E2A;&#x53C2;&#x6570;&#xFF0C;&#x90A3;&#x4E48;&#x865A;&#x62DF;&#x673A;&#x5C06;&#x589E;&#x957F;Metaspace&#x7684;&#x5927;&#x5C0F;&#x3002;&#x5728;&#x672C;&#x673A;&#x8BE5;&#x53C2;&#x6570;&#x7684;&#x9ED8;&#x8BA4;&#x503C;&#x4E3A;40&#xFF0C;&#x4E5F;&#x5C31;&#x662F;40%&#x3002;&#x8BBE;&#x7F6E;&#x8BE5;&#x53C2;&#x6570;&#x53EF;&#x4EE5;&#x63A7;&#x5236;Metaspace&#x7684;&#x589E;&#x957F;&#x7684;&#x901F;&#x5EA6;&#xFF0C;&#x592A;&#x5C0F;&#x7684;&#x503C;&#x4F1A;&#x5BFC;&#x81F4;Metaspace&#x589E;&#x957F;&#x7684;&#x7F13;&#x6162;&#xFF0C;Metaspace&#x7684;&#x4F7F;&#x7528;&#x9010;&#x6E10;&#x8D8B;&#x4E8E;&#x9971;&#x548C;&#xFF0C;&#x53EF;&#x80FD;&#x4F1A;&#x5F71;&#x54CD;&#x4E4B;&#x540E;&#x7C7B;&#x7684;&#x52A0;&#x8F7D;&#x3002;&#x800C;&#x592A;&#x5927;&#x7684;&#x503C;&#x4F1A;&#x5BFC;&#x81F4;Metaspace&#x589E;&#x957F;&#x7684;&#x8FC7;&#x5FEB;&#xFF0C;&#x6D6A;&#x8D39;&#x5185;&#x5B58;&#x3002;</li>
-<li>-XX:MaxMetasaceFreeRatio=N<br>&#x5F53;&#x8FDB;&#x884C;&#x8FC7;Metaspace GC&#x4E4B;&#x540E;&#xFF0C; &#x4F1A;&#x8BA1;&#x7B97;&#x5F53;&#x524D;Metaspace&#x7684;&#x7A7A;&#x95F2;&#x7A7A;&#x95F4;&#x6BD4;&#xFF0C;&#x5982;&#x679C;&#x7A7A;&#x95F2;&#x6BD4;&#x5927;&#x4E8E;&#x8FD9;&#x4E2A;&#x53C2;&#x6570;&#xFF0C;&#x90A3;&#x4E48;&#x865A;&#x62DF;&#x673A;&#x4F1A;&#x91CA;&#x653E;Metaspace&#x7684;&#x90E8;&#x5206;&#x7A7A;&#x95F4;&#x3002;&#x5728;&#x672C;&#x673A;&#x8BE5;&#x53C2;&#x6570;&#x7684;&#x9ED8;&#x8BA4;&#x503C;&#x4E3A;70&#xFF0C;&#x4E5F;&#x5C31;&#x662F;70%&#x3002;</li>
-<li>-XX:MaxMetaspaceExpansion=N<br>Metaspace&#x589E;&#x957F;&#x65F6;&#x7684;&#x6700;&#x5927;&#x5E45;&#x5EA6;&#x3002;&#x5728;&#x672C;&#x673A;&#x4E0A;&#x8BE5;&#x53C2;&#x6570;&#x7684;&#x9ED8;&#x8BA4;&#x503C;&#x4E3A;5452592B&#xFF08;&#x5927;&#x7EA6;&#x4E3A;5MB&#xFF09;&#x3002;</li>
-<li>-XX:MinMetaspaceExpansion=N<br>Metaspace&#x589E;&#x957F;&#x65F6;&#x7684;&#x6700;&#x5C0F;&#x5E45;&#x5EA6;&#x3002;&#x5728;&#x672C;&#x673A;&#x4E0A;&#x8BE5;&#x53C2;&#x6570;&#x7684;&#x9ED8;&#x8BA4;&#x503C;&#x4E3A;340784B&#xFF08;&#x5927;&#x7EA6;330KB&#x4E3A;&#xFF09;&#x3002;</li>
+<li>-XX:MetaspaceSize=N<br>这个参数是初始化的Metaspace大小，该值越大触发Metaspace GC的时机就越晚。随着GC的到来，虚拟机会根据实际情况调控Metaspace的大小，可能增加上线也可能降低。在默认情况下，这个值大小根据不同的平台在12M到20M浮动。使用java -XX:+PrintFlagsInitial命令查看本机的初始化参数，-XX:Metaspacesize为21810376B（大约20.8M）。</li>
+<li>-XX:MaxMetaspaceSize=N<br>这个参数用于限制Metaspace增长的上限，防止因为某些情况导致Metaspace无限的使用本地内存，影响到其他程序。在本机上该参数的默认值为4294967295B（大约4096MB）。</li>
+<li>-XX:MinMetaspaceFreeRatio=N<br>当进行过Metaspace GC之后，会计算当前Metaspace的空闲空间比，如果空闲比小于这个参数，那么虚拟机将增长Metaspace的大小。在本机该参数的默认值为40，也就是40%。设置该参数可以控制Metaspace的增长的速度，太小的值会导致Metaspace增长的缓慢，Metaspace的使用逐渐趋于饱和，可能会影响之后类的加载。而太大的值会导致Metaspace增长的过快，浪费内存。</li>
+<li>-XX:MaxMetasaceFreeRatio=N<br>当进行过Metaspace GC之后， 会计算当前Metaspace的空闲空间比，如果空闲比大于这个参数，那么虚拟机会释放Metaspace的部分空间。在本机该参数的默认值为70，也就是70%。</li>
+<li>-XX:MaxMetaspaceExpansion=N<br>Metaspace增长时的最大幅度。在本机上该参数的默认值为5452592B（大约为5MB）。</li>
+<li>-XX:MinMetaspaceExpansion=N<br>Metaspace增长时的最小幅度。在本机上该参数的默认值为340784B（大约330KB为）。</li>
 </ul>
-<h3 id="&#x6C38;&#x4E45;&#x4EE3;&#x4E3A;&#x4EC0;&#x4E48;&#x88AB;&#x66FF;&#x6362;&#x4E86;"><a href="#&#x6C38;&#x4E45;&#x4EE3;&#x4E3A;&#x4EC0;&#x4E48;&#x88AB;&#x66FF;&#x6362;&#x4E86;" class="headerlink" title="&#x6C38;&#x4E45;&#x4EE3;&#x4E3A;&#x4EC0;&#x4E48;&#x88AB;&#x66FF;&#x6362;&#x4E86;"></a>&#x6C38;&#x4E45;&#x4EE3;&#x4E3A;&#x4EC0;&#x4E48;&#x88AB;&#x66FF;&#x6362;&#x4E86;</h3><p>&#x601D;&#x8003;&#x4E00;&#x4E0B;&#xFF0C;&#x4E3A;&#x4EC0;&#x4E48;&#x4F7F;&#x7528;&#x5143;&#x7A7A;&#x95F4;&#x66FF;&#x6362;&#x6C38;&#x4E45;&#x4EE3;&#xFF1F;</p>
+<h3 id="永久代为什么被替换了"><a href="#永久代为什么被替换了" class="headerlink" title="永久代为什么被替换了"></a>永久代为什么被替换了</h3><p>思考一下，为什么使用元空间替换永久代？</p>
 <ul>
-<li>&#x8868;&#x9762;&#x4E0A;&#x770B;&#x662F;&#x4E3A;&#x4E86;&#x907F;&#x514D;OOM&#x5F02;&#x5E38;&#x3002;&#x56E0;&#x4E3A;&#x901A;&#x5E38;&#x4F7F;&#x7528;PermSize&#x548C;MaxPermSize&#x8BBE;&#x7F6E;&#x6C38;&#x4E45;&#x4EE3;&#x7684;&#x5927;&#x5C0F;&#x5C31;&#x51B3;&#x5B9A;&#x4E86;&#x6C38;&#x4E45;&#x4EE3;&#x7684;&#x4E0A;&#x9650;&#xFF0C;&#x4F46;&#x662F;&#x4E0D;&#x662F;&#x603B;&#x80FD;&#x77E5;&#x9053;&#x5E94;&#x8BE5;&#x8BBE;&#x7F6E;&#x4E3A;&#x591A;&#x5927;&#x5408;&#x9002;, &#x5982;&#x679C;&#x4F7F;&#x7528;&#x9ED8;&#x8BA4;&#x503C;&#x5F88;&#x5BB9;&#x6613;&#x9047;&#x5230;OOM&#x9519;&#x8BEF;&#x3002;<br>&#x5F53;&#x4F7F;&#x7528;&#x5143;&#x7A7A;&#x95F4;&#x65F6;&#xFF0C;&#x53EF;&#x4EE5;&#x52A0;&#x8F7D;&#x591A;&#x5C11;&#x7C7B;&#x7684;&#x5143;&#x6570;&#x636E;&#x5C31;&#x4E0D;&#x518D;&#x7531;MaxPermSize&#x63A7;&#x5236;, &#x800C;&#x7531;&#x7CFB;&#x7EDF;&#x7684;&#x5B9E;&#x9645;&#x53EF;&#x7528;&#x7A7A;&#x95F4;&#x6765;&#x63A7;&#x5236;&#x3002;<br>&#x66F4;&#x6DF1;&#x5C42;&#x7684;&#x539F;&#x56E0;&#x8FD8;&#x662F;&#x8981;&#x5408;&#x5E76;HotSpot&#x548C;JRockit&#x7684;&#x4EE3;&#x7801;&#xFF0C;JRockit&#x4ECE;&#x6765;&#x6CA1;&#x6709;&#x6240;&#x8C13;&#x7684;&#x6C38;&#x4E45;&#x4EE3;&#xFF0C;&#x4E5F;&#x4E0D;&#x9700;&#x8981;&#x5F00;&#x53D1;&#x8FD0;&#x7EF4;&#x4EBA;&#x5458;&#x8BBE;&#x7F6E;&#x6C38;&#x4E45;&#x4EE3;&#x7684;&#x5927;&#x5C0F;&#xFF0C;&#x4F46;&#x662F;&#x8FD0;&#x884C;&#x826F;&#x597D;&#x3002;&#x540C;&#x65F6;&#x4E5F;&#x4E0D;&#x7528;&#x62C5;&#x5FC3;&#x8FD0;&#x884C;&#x6027;&#x80FD;&#x95EE;&#x9898;&#x4E86;,&#x5728;&#x8986;&#x76D6;&#x5230;&#x7684;&#x6D4B;&#x8BD5;&#x4E2D;, &#x7A0B;&#x5E8F;&#x542F;&#x52A8;&#x548C;&#x8FD0;&#x884C;&#x901F;&#x5EA6;&#x964D;&#x4F4E;&#x4E0D;&#x8D85;&#x8FC7;1%&#xFF0C;&#x4F46;&#x662F;&#x8FD9;&#x70B9;&#x6027;&#x80FD;&#x635F;&#x5931;&#x6362;&#x6765;&#x4E86;&#x66F4;&#x5927;&#x7684;&#x5B89;&#x5168;&#x4FDD;&#x969C;&#x3002;</li>
+<li>表面上看是为了避免OOM异常。因为通常使用PermSize和MaxPermSize设置永久代的大小就决定了永久代的上限，但是不是总能知道应该设置为多大合适, 如果使用默认值很容易遇到OOM错误。<br>当使用元空间时，可以加载多少类的元数据就不再由MaxPermSize控制, 而由系统的实际可用空间来控制。<br>更深层的原因还是要合并HotSpot和JRockit的代码，JRockit从来没有所谓的永久代，也不需要开发运维人员设置永久代的大小，但是运行良好。同时也不用担心运行性能问题了,在覆盖到的测试中, 程序启动和运行速度降低不超过1%，但是这点性能损失换来了更大的安全保障。</li>
 </ul>
 
       
@@ -367,6 +367,10 @@
           </div>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/03/16/java-base-java-synchronized/" rel="prev" title="java 偏向锁、轻量级锁及重量级锁synchronized原理 ">
+                java 偏向锁、轻量级锁及重量级锁synchronized原理  <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -434,7 +438,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">16</span>
+              <span class="site-state-item-count">18</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -451,7 +455,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">17</span>
+                <span class="site-state-item-count">19</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

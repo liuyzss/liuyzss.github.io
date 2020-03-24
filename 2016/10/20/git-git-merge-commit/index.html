@@ -84,16 +84,22 @@
 
 
 
-<meta name="description" content="merge &amp;#x80FD;&amp;#x591F;&amp;#x80DC;&amp;#x4EFB;&amp;#x5E73;&amp;#x5E38;&amp;#x5927;&amp;#x90E8;&amp;#x5206;&amp;#x7684;&amp;#x5408;&amp;#x5E76;&amp;#x9700;&amp;#x6C42;&amp;#x3002;&amp;#x4F46;&amp;#x4E5F;&amp;#x4F1A;&amp;#x9047;&amp;#x5230;&amp;#x67D0;&amp;#x4E9B;&amp;#x7279;&amp;#x6B8A;&amp;#">
+<meta name="description" content="merge 能够胜任平常大部分的合并需求。但也会遇到某些特殊的情况，例如正在开发一个新的功能，线上说有一个紧急的bug要修复。bug修好了但并不像把仍在开发的新功能代码也提交到线上去。这时候也许想要一个只合并指定某些 commit 的功能。
+假设分支结构如下：
+123dd2e86 - 946992 - 9143a9 - a6fd86 - 5a6057 [master]">
 <meta property="og:type" content="article">
 <meta property="og:title" content="git合并分支上指定的commit">
 <meta property="og:url" content="http://yoursite.com/2016/10/20/git-git-merge-commit/index.html">
 <meta property="og:site_name" content="蓝色骑士">
-<meta property="og:description" content="merge &amp;#x80FD;&amp;#x591F;&amp;#x80DC;&amp;#x4EFB;&amp;#x5E73;&amp;#x5E38;&amp;#x5927;&amp;#x90E8;&amp;#x5206;&amp;#x7684;&amp;#x5408;&amp;#x5E76;&amp;#x9700;&amp;#x6C42;&amp;#x3002;&amp;#x4F46;&amp;#x4E5F;&amp;#x4F1A;&amp;#x9047;&amp;#x5230;&amp;#x67D0;&amp;#x4E9B;&amp;#x7279;&amp;#x6B8A;&amp;#">
+<meta property="og:description" content="merge 能够胜任平常大部分的合并需求。但也会遇到某些特殊的情况，例如正在开发一个新的功能，线上说有一个紧急的bug要修复。bug修好了但并不像把仍在开发的新功能代码也提交到线上去。这时候也许想要一个只合并指定某些 commit 的功能。
+假设分支结构如下：
+123dd2e86 - 946992 - 9143a9 - a6fd86 - 5a6057 [master]">
 <meta property="og:updated_time" content="2016-10-20T09:25:11.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="git合并分支上指定的commit">
-<meta name="twitter:description" content="merge &amp;#x80FD;&amp;#x591F;&amp;#x80DC;&amp;#x4EFB;&amp;#x5E73;&amp;#x5E38;&amp;#x5927;&amp;#x90E8;&amp;#x5206;&amp;#x7684;&amp;#x5408;&amp;#x5E76;&amp;#x9700;&amp;#x6C42;&amp;#x3002;&amp;#x4F46;&amp;#x4E5F;&amp;#x4F1A;&amp;#x9047;&amp;#x5230;&amp;#x67D0;&amp;#x4E9B;&amp;#x7279;&amp;#x6B8A;&amp;#">
+<meta name="twitter:description" content="merge 能够胜任平常大部分的合并需求。但也会遇到某些特殊的情况，例如正在开发一个新的功能，线上说有一个紧急的bug要修复。bug修好了但并不像把仍在开发的新功能代码也提交到线上去。这时候也许想要一个只合并指定某些 commit 的功能。
+假设分支结构如下：
+123dd2e86 - 946992 - 9143a9 - a6fd86 - 5a6057 [master]">
 
 
 
@@ -305,21 +311,21 @@
       
 
       
-        <p>merge &#x80FD;&#x591F;&#x80DC;&#x4EFB;&#x5E73;&#x5E38;&#x5927;&#x90E8;&#x5206;&#x7684;&#x5408;&#x5E76;&#x9700;&#x6C42;&#x3002;&#x4F46;&#x4E5F;&#x4F1A;&#x9047;&#x5230;&#x67D0;&#x4E9B;&#x7279;&#x6B8A;&#x7684;&#x60C5;&#x51B5;&#xFF0C;&#x4F8B;&#x5982;&#x6B63;&#x5728;&#x5F00;&#x53D1;&#x4E00;&#x4E2A;&#x65B0;&#x7684;&#x529F;&#x80FD;&#xFF0C;&#x7EBF;&#x4E0A;&#x8BF4;&#x6709;&#x4E00;&#x4E2A;&#x7D27;&#x6025;&#x7684;bug&#x8981;&#x4FEE;&#x590D;&#x3002;bug&#x4FEE;&#x597D;&#x4E86;&#x4F46;&#x5E76;&#x4E0D;&#x50CF;&#x628A;&#x4ECD;&#x5728;&#x5F00;&#x53D1;&#x7684;&#x65B0;&#x529F;&#x80FD;&#x4EE3;&#x7801;&#x4E5F;&#x63D0;&#x4EA4;&#x5230;&#x7EBF;&#x4E0A;&#x53BB;&#x3002;&#x8FD9;&#x65F6;&#x5019;&#x4E5F;&#x8BB8;&#x60F3;&#x8981;&#x4E00;&#x4E2A;&#x53EA;&#x5408;&#x5E76;&#x6307;&#x5B9A;&#x67D0;&#x4E9B; commit &#x7684;&#x529F;&#x80FD;&#x3002;</p>
-<p>&#x5047;&#x8BBE;&#x5206;&#x652F;&#x7ED3;&#x6784;&#x5982;&#x4E0B;&#xFF1A;</p>
+        <p>merge 能够胜任平常大部分的合并需求。但也会遇到某些特殊的情况，例如正在开发一个新的功能，线上说有一个紧急的bug要修复。bug修好了但并不像把仍在开发的新功能代码也提交到线上去。这时候也许想要一个只合并指定某些 commit 的功能。</p>
+<p>假设分支结构如下：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">dd2e86 - 946992 - 9143a9 - a6fd86 - 5a6057 [master]</div><div class="line">                  \</div><div class="line">                  76cada - 62ecb3 - b886a0 [feature]</div></pre></td></tr></table></figure>
-<p>&#x518D;&#x5047;&#x8BBE; 62ecb3 &#x7684;&#x63D0;&#x4EA4;&#x4FEE;&#x590D;&#x4E86;bug&#xFF0C;&#x8FD9;&#x65F6;&#x5019;&#x53EF;&#x4EE5;&#x7528; cherry-pick &#x5408;&#x5E76;&#x5355;&#x4E2A; commit<br>&#x5177;&#x4F53;&#x64CD;&#x4F5C;&#xFF1A;</p>
+<p>再假设 62ecb3 的提交修复了bug，这时候可以用 cherry-pick 合并单个 commit<br>具体操作：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">git checkout master</div><div class="line">git cherry-pick 62ecb3</div></pre></td></tr></table></figure>
-<p>&#x5C31;&#x8FD9;&#x4E48;&#x7B80;&#x5355;&#x3002;62ecb3 &#x5DF2;&#x7ECF;&#x5E94;&#x7528;&#x5728; master &#x4E0A;&#x4E86;&#xFF08;&#x4F5C;&#x4E3A;&#x4E00;&#x4E2A;&#x65B0;&#x7684;commit&#xFF09;&#x3002;</p>
+<p>就这么简单。62ecb3 已经应用在 master 上了（作为一个新的commit）。</p>
 <blockquote>
-<p>cherry pick &#x8FDE;&#x7EED;&#x591A;&#x4E2A;commit</p>
+<p>cherry pick 连续多个commit</p>
 </blockquote>
-<p>cherry pick &#x867D;&#x597D;&#xFF0C;&#x4F46;&#x4E00;&#x6B21;&#x53EA;&#x80FD;&#x5408;&#x5E76;&#x4E00;&#x4E2A;commit&#x3002;&#x5408;&#x5E76;&#x591A;&#x4E2A;&#x5C31;&#x8981;&#x7528;&#x5230; rebase &#x4E86;&#x3002;&#x518D;&#x6B21;&#x5047;&#x8BBE;&#x60F3;&#x8981;&#x628A; 76cada &#x548C; 62ecb3 &#x5408;&#x5E76;&#x5230; master &#x4E0A;&#x3002;<br>&#x64CD;&#x4F5C;&#xFF1A;</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">git checkout -b newbranch 62ecb3</div><div class="line">git rebase &#x2014;onto master 76cada</div></pre></td></tr></table></figure>
-<p>76cada &#x8868;&#x793A;&#x4ECE; 76cada &#x7684; commit &#x5F00;&#x59CB;&#x5408;&#x5E76;&#xFF08;&#x4F5C;&#x4E3A;&#x65B0;&#x7684;commit&#xFF09;&#x3002;&#x8FD9;&#x6837;&#x5C31;&#x5B8C;&#x6210;&#x4E86; 76cada &#x5230; 62ecb3 &#x5408;&#x5E76;&#x5230; master&#x3002;</p>
-<p>&#x53C2;&#x8003;:<br><a href="https://ariejan.net/2010/06/10/cherry-picking-specific-commits-from-another-branch/" target="_blank" rel="external">https://ariejan.net/2010/06/10/cherry-picking-specific-commits-from-another-branch/</a></p>
-<p>&#x5173;&#x4E8E; cherry pick:<br><a href="https://git-scm.com/docs/git-cherry-pick" target="_blank" rel="external">https://git-scm.com/docs/git-cherry-pick</a></p>
-<p>&#x5173;&#x4E8E; rebase:<br><a href="http://git-scm.com/book/en/v2/Distributed-Git-Maintaining-a-Project#Rebasing-and-Cherry-Picking-Workflows" target="_blank" rel="external">http://git-scm.com/book/en/v2/Distributed-Git-Maintaining-a-Project#Rebasing-and-Cherry-Picking-Workflows</a></p>
+<p>cherry pick 虽好，但一次只能合并一个commit。合并多个就要用到 rebase 了。再次假设想要把 76cada 和 62ecb3 合并到 master 上。<br>操作：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">git checkout -b newbranch 62ecb3</div><div class="line">git rebase —onto master 76cada</div></pre></td></tr></table></figure>
+<p>76cada 表示从 76cada 的 commit 开始合并（作为新的commit）。这样就完成了 76cada 到 62ecb3 合并到 master。</p>
+<p>参考:<br><a href="https://ariejan.net/2010/06/10/cherry-picking-specific-commits-from-another-branch/" target="_blank" rel="external">https://ariejan.net/2010/06/10/cherry-picking-specific-commits-from-another-branch/</a></p>
+<p>关于 cherry pick:<br><a href="https://git-scm.com/docs/git-cherry-pick" target="_blank" rel="external">https://git-scm.com/docs/git-cherry-pick</a></p>
+<p>关于 rebase:<br><a href="http://git-scm.com/book/en/v2/Distributed-Git-Maintaining-a-Project#Rebasing-and-Cherry-Picking-Workflows" target="_blank" rel="external">http://git-scm.com/book/en/v2/Distributed-Git-Maintaining-a-Project#Rebasing-and-Cherry-Picking-Workflows</a></p>
 
       
     </div>
@@ -429,7 +435,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">16</span>
+              <span class="site-state-item-count">18</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -446,7 +452,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">17</span>
+                <span class="site-state-item-count">19</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
