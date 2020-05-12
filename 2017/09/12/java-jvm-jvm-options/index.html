@@ -85,18 +85,18 @@
 
 
 <meta name="description" content="jvm 参数123456-Xms20M -Xmx20M -XX:+HeapDumpOnOutOfMemoryError#-Xmx JVM最大可用内存为#-Xms 最小堆的大小#-XX:+HeapDumpOnOutOfMemoryError jvm 内存溢出是生成快照hprof#-XX:HeapDumpPath 指定快照的目录#-Xss128k设置每个线程的堆栈大小
-javaCore 线程堆栈信息导">
+heap 导出12345# 当内">
 <meta property="og:type" content="article">
 <meta property="og:title" content="jvm options">
 <meta property="og:url" content="http://yoursite.com/2017/09/12/java-jvm-jvm-options/index.html">
 <meta property="og:site_name" content="蓝色骑士">
 <meta property="og:description" content="jvm 参数123456-Xms20M -Xmx20M -XX:+HeapDumpOnOutOfMemoryError#-Xmx JVM最大可用内存为#-Xms 最小堆的大小#-XX:+HeapDumpOnOutOfMemoryError jvm 内存溢出是生成快照hprof#-XX:HeapDumpPath 指定快照的目录#-Xss128k设置每个线程的堆栈大小
-javaCore 线程堆栈信息导">
+heap 导出12345# 当内">
 <meta property="og:updated_time" content="2017-09-12T01:06:17.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="jvm options">
 <meta name="twitter:description" content="jvm 参数123456-Xms20M -Xmx20M -XX:+HeapDumpOnOutOfMemoryError#-Xmx JVM最大可用内存为#-Xms 最小堆的大小#-XX:+HeapDumpOnOutOfMemoryError jvm 内存溢出是生成快照hprof#-XX:HeapDumpPath 指定快照的目录#-Xss128k设置每个线程的堆栈大小
-javaCore 线程堆栈信息导">
+heap 导出12345# 当内">
 
 
 
@@ -320,7 +320,8 @@ javaCore 线程堆栈信息导">
       
 
       
-        <h3 id="jvm-参数"><a href="#jvm-参数" class="headerlink" title="jvm 参数"></a>jvm 参数</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">-Xms20M -Xmx20M -XX:+HeapDumpOnOutOfMemoryError</div><div class="line">#-Xmx JVM最大可用内存为</div><div class="line">#-Xms 最小堆的大小</div><div class="line">#-XX:+HeapDumpOnOutOfMemoryError jvm 内存溢出是生成快照hprof</div><div class="line">#-XX:HeapDumpPath 指定快照的目录</div><div class="line">#-Xss128k设置每个线程的堆栈大小</div></pre></td></tr></table></figure>
+        <h3 id="jvm-参数"><a href="#jvm-参数" class="headerlink" title="jvm 参数"></a>jvm 参数</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">-Xms20M -Xmx20M -XX:+HeapDumpOnOutOfMemoryError</div><div class="line"><span class="comment">#-Xmx JVM最大可用内存为</span></div><div class="line"><span class="comment">#-Xms 最小堆的大小</span></div><div class="line"><span class="comment">#-XX:+HeapDumpOnOutOfMemoryError jvm 内存溢出是生成快照hprof</span></div><div class="line"><span class="comment">#-XX:HeapDumpPath 指定快照的目录</span></div><div class="line"><span class="comment">#-Xss128k设置每个线程的堆栈大小</span></div></pre></td></tr></table></figure>
+<h3 id="heap-导出"><a href="#heap-导出" class="headerlink" title="heap 导出"></a>heap 导出</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 当内存溢出是导出到指定目录</span></div><div class="line">-XX:+HeapDumpOnOutOfMemoryError </div><div class="line">-XX:HeapDumpPath=/<span class="built_in">log</span>/</div><div class="line"><span class="comment"># 手动导出</span></div><div class="line">jmap -dump:live,format=b,file=tai.dump 16733</div></pre></td></tr></table></figure>
 <h3 id="javaCore-线程堆栈信息导出"><a href="#javaCore-线程堆栈信息导出" class="headerlink" title="javaCore 线程堆栈信息导出"></a>javaCore 线程堆栈信息导出</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="number">1</span>.Getting a Thread Dump Using jstack</div><div class="line"><span class="number">2</span>.A Thread Dump Using jVisualVM</div><div class="line"><span class="number">3</span>.Generating in a Linux Terminal kill -<span class="number">3</span> java进程ID</div></pre></td></tr></table></figure>
 
       
@@ -439,7 +440,7 @@ javaCore 线程堆栈信息导">
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">14</span>
+                <span class="site-state-item-count">15</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -477,7 +478,7 @@ javaCore 线程堆栈信息导">
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#jvm-参数"><span class="nav-number">1.</span> <span class="nav-text">jvm 参数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#javaCore-线程堆栈信息导出"><span class="nav-number">2.</span> <span class="nav-text">javaCore 线程堆栈信息导出</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#jvm-参数"><span class="nav-number">1.</span> <span class="nav-text">jvm 参数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#heap-导出"><span class="nav-number">2.</span> <span class="nav-text">heap 导出</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#javaCore-线程堆栈信息导出"><span class="nav-number">3.</span> <span class="nav-text">javaCore 线程堆栈信息导出</span></a></li></ol></div>
             
           </div>
         </section>

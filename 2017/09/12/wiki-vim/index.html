@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="vim," />
+  <meta name="keywords" content="wiki,vim," />
 
 
 
@@ -84,16 +84,37 @@
 
 
 
-<meta name="description" content="vim选择不匹配的行并且删除123456789v/pattern/dg!/pattern/dpattern 是要匹配的正规d 代表删除v选项对应的英文应该是 invert 反转的意思g代表全部 global!是取反g!也是取反之意">
+<meta name="description" content="vim 常用命令
+选择不匹配的行并且删除
+
+123v/pattern/d 或者 g!/pattern/dpattern 是要匹配的正规 d 代表删除 v选项对应的英文应该是 invert 反转的意思g代表全部 global !是取反 g!也是取反之意
+
+替换操作
+
+123456:s/a/b/ #将当前行第一个a替换为b:s/a/b/g #将当前行的所有a替换为b:%s/a/b #将每行第一个a替换">
 <meta property="og:type" content="article">
 <meta property="og:title" content="vim 常用操作">
 <meta property="og:url" content="http://yoursite.com/2017/09/12/wiki-vim/index.html">
 <meta property="og:site_name" content="蓝色骑士">
-<meta property="og:description" content="vim选择不匹配的行并且删除123456789v/pattern/dg!/pattern/dpattern 是要匹配的正规d 代表删除v选项对应的英文应该是 invert 反转的意思g代表全部 global!是取反g!也是取反之意">
+<meta property="og:description" content="vim 常用命令
+选择不匹配的行并且删除
+
+123v/pattern/d 或者 g!/pattern/dpattern 是要匹配的正规 d 代表删除 v选项对应的英文应该是 invert 反转的意思g代表全部 global !是取反 g!也是取反之意
+
+替换操作
+
+123456:s/a/b/ #将当前行第一个a替换为b:s/a/b/g #将当前行的所有a替换为b:%s/a/b #将每行第一个a替换">
 <meta property="og:updated_time" content="2017-09-12T03:02:54.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="vim 常用操作">
-<meta name="twitter:description" content="vim选择不匹配的行并且删除123456789v/pattern/dg!/pattern/dpattern 是要匹配的正规d 代表删除v选项对应的英文应该是 invert 反转的意思g代表全部 global!是取反g!也是取反之意">
+<meta name="twitter:description" content="vim 常用命令
+选择不匹配的行并且删除
+
+123v/pattern/d 或者 g!/pattern/dpattern 是要匹配的正规 d 代表删除 v选项对应的英文应该是 invert 反转的意思g代表全部 global !是取反 g!也是取反之意
+
+替换操作
+
+123456:s/a/b/ #将当前行第一个a替换为b:s/a/b/g #将当前行的所有a替换为b:%s/a/b #将每行第一个a替换">
 
 
 
@@ -272,7 +293,19 @@
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/vim/" itemprop="url" rel="index">
+                  <a href="/categories/wiki/" itemprop="url" rel="index">
+                    <span itemprop="name">wiki</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/wiki/vim/" itemprop="url" rel="index">
                     <span itemprop="name">vim</span>
                   </a>
                 </span>
@@ -305,7 +338,17 @@
       
 
       
-        <h3 id="vim选择不匹配的行并且删除"><a href="#vim选择不匹配的行并且删除" class="headerlink" title="vim选择不匹配的行并且删除"></a>vim选择不匹配的行并且删除</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">v/pattern/d</div><div class="line">g!/pattern/d</div><div class="line"></div><div class="line">pattern 是要匹配的正规</div><div class="line">d 代表删除</div><div class="line">v选项对应的英文应该是 invert 反转的意思</div><div class="line">g代表全部 global</div><div class="line">!是取反</div><div class="line">g!也是取反之意</div></pre></td></tr></table></figure>
+        <h3 id="vim-常用命令"><a href="#vim-常用命令" class="headerlink" title="vim 常用命令"></a>vim 常用命令</h3><ul>
+<li>选择不匹配的行并且删除</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">v/pattern/d 或者 g!/pattern/d</div><div class="line">pattern 是要匹配的正规 d 代表删除 v选项对应的英文应该是 invert 反转的意思</div><div class="line">g代表全部 global !是取反 g!也是取反之意</div></pre></td></tr></table></figure>
+<ul>
+<li>替换操作</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">:s/a/b/ <span class="comment">#将当前行第一个a替换为b</span></div><div class="line">:s/a/b/g <span class="comment">#将当前行的所有a替换为b</span></div><div class="line">:%s/a/b <span class="comment">#将每行第一个a替换为b</span></div><div class="line">:%s/a/b/g <span class="comment">#将整个文件的所有a替换为b</span></div><div class="line">:1,3s/a/b/ <span class="comment">#将1至3行的第一个a替换为b</span></div><div class="line">:1,3s/a/b/g <span class="comment">#将1至3行的所有a替换为b</span></div></pre></td></tr></table></figure>
+<ul>
+<li><a href="https://vimjc.com/vim-recording.html" target="_blank" rel="external">vim宏录制与重复操作</a></li>
+</ul>
 
       
     </div>
@@ -327,6 +370,8 @@
     <footer class="post-footer">
       
         <div class="post-tags">
+          
+            <a href="/tags/wiki/" rel="tag">#wiki</a>
           
             <a href="/tags/vim/" rel="tag">#vim</a>
           
@@ -423,7 +468,7 @@
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">14</span>
+                <span class="site-state-item-count">15</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -461,7 +506,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#vim选择不匹配的行并且删除"><span class="nav-number">1.</span> <span class="nav-text">vim选择不匹配的行并且删除</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#vim-常用命令"><span class="nav-number">1.</span> <span class="nav-text">vim 常用命令</span></a></li></ol></div>
             
           </div>
         </section>
